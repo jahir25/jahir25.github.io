@@ -65,13 +65,13 @@ $(function () {
     if (bodyScroll > 100) {
       navbar.addClass("nav-scroll");
       logo.attr("src", "img/logo_black.svg");
-      darkbg.attr("src", "img/white.svg");
+      darkbg.attr("src", "img/logo_white.svg");
       whitebg.attr("src", "img/logo_black.svg");
-      scrollbg.attr("src", "img/white.svg");
+      scrollbg.attr("src", "img/logo_white.svg");
       lightbg.attr("src", "img/logo_black.svg");
     } else {
       navbar.removeClass("nav-scroll");
-      logo.attr("src", "img/white.svg");
+      logo.attr("src", "img/logo_white.svg");
       lightbg.attr("src", "img/logo_black.svg");
       navbloglogo.attr("src", "img/logo_black.svg");
     }

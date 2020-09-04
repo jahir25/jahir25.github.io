@@ -1,8 +1,8 @@
 /*-----------------------------------------------------------------------------------
 
-    Theme Name: Ashton - One Page Portfolio
+    Theme Name: JahirDiaz
     Description: One Page Portfolio Template
-    Author: chitrakootweb
+    Author: JahirDiaz
     Version: 1.0
         
     ---------------------------------- */
@@ -64,16 +64,16 @@ $(function () {
       logo = $(".navbar .logo> img");
     if (bodyScroll > 100) {
       navbar.addClass("nav-scroll");
-      logo.attr("src", "img/logo_black.svg");
-      darkbg.attr("src", "img/logo_white.svg");
-      whitebg.attr("src", "img/logo_black.svg");
-      scrollbg.attr("src", "img/logo_white.svg");
-      lightbg.attr("src", "img/logo_black.svg");
+      logo.attr("src", "img/logo_black.png");
+      darkbg.attr("src", "img/logo_white.png");
+      whitebg.attr("src", "img/logo_black.png");
+      scrollbg.attr("src", "img/logo_white.png");
+      lightbg.attr("src", "img/logo_black.png");
     } else {
       navbar.removeClass("nav-scroll");
-      logo.attr("src", "img/logo_white.svg");
-      lightbg.attr("src", "img/logo_black.svg");
-      navbloglogo.attr("src", "img/logo_black.svg");
+      logo.attr("src", "img/logo_white.png");
+      lightbg.attr("src", "img/logo_black.png");
+      navbloglogo.attr("src", "img/logo_black.png");
     }
   });
   var windowsize = wind.width();

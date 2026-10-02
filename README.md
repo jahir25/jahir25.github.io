@@ -2,4 +2,4 @@
 
 Sitio profesional de Jahir Diaz, consultor y arquitecto SAP BTP.
 
-Página estática de un solo archivo (`index.html`), sin dependencias de build. El CV en PDF está en `cv/`.
+Página estática de un solo archivo (`index.html`), sin dependencias de build.

@@ -1,1075 +1,352 @@
-<html lang="en">
-  <head>
-    <!-- Metas -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:image" content="img/logo_black.png" />
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Jahir Diaz, consultor y arquitecto SAP BTP: Integration Suite, API Management, SAP CAP, federación y SSO. Certificado SAP Solution Architect – SAP BTP e Integration Developer.">
+<meta property="og:title" content="Jahir Diaz · SAP BTP">
+<meta property="og:description" content="Consultor y arquitecto SAP BTP especializado en Integration Suite.">
+<meta property="og:image" content="https://jahir25.github.io/img/jahir-diaz.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/favicon.png">
+<title>Jahir Diaz · SAP BTP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Schibsted+Grotesk:wght@500;700;800&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+/* Layout: una sola columna editorial; el hero muestra un iFlow vivo (emisor → Groovy → router → receptores) como tesis del perfil */
+:root{
+  --bg:#f3f7f7; --surface:#ffffff; --fg:#10242b; --muted:#4e636a; --line:#d3dfe1;
+  --accent:#167f80; --accent-ink:#0f5f60; --accent-soft:#dff0ef; --signal:#d9892b;
+  --rail:#0f2f37; --rail-fg:#e6eef0;
+  --display:"Schibsted Grotesk",ui-sans-serif,system-ui,sans-serif;
+  --body:"Source Sans 3",ui-sans-serif,system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0b1d22; --surface:#11282e; --fg:#e4eef0; --muted:#9db3b9; --line:#21414a;
+  --accent:#4cc0b8; --accent-ink:#8fdcd5; --accent-soft:#143a3f; --signal:#f0a94e;
+  --rail:#08171b; --rail-fg:#e4eef0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0b1d22; --surface:#11282e; --fg:#e4eef0; --muted:#9db3b9; --line:#21414a;
+  --accent:#4cc0b8; --accent-ink:#8fdcd5; --accent-soft:#143a3f; --signal:#f0a94e;
+  --rail:#08171b; --rail-fg:#e4eef0; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+a{color:var(--accent-ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.mono{font-family:var(--mono)}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--mono);font-size:13px;color:var(--accent-ink);letter-spacing:.03em}
 
-    <!-- Title  -->
-    <title>Jahir Díaz - Portfolio</title>
+/* nav */
+nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px;flex-wrap:wrap}
+nav .id{font-family:var(--display);font-weight:800;font-size:18px;letter-spacing:-.01em}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:15px}
+nav a:hover{color:var(--fg)}
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="img/logo_black.png" />
-    <link rel="apple-touch-icon" href="img/logo_black.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="img/logo_black.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="img/logo_black.png" />
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center;padding-block:clamp(24px,5vw,56px) 40px}
+.hero h1{font-size:clamp(52px,8.5vw,104px);font-weight:800;line-height:.92;letter-spacing:-.025em;margin-block:14px 18px}
+.hero .lede{font-size:clamp(18px,2vw,21px);color:var(--muted);max-width:34em;margin:0}
+.hero .lede b{color:var(--fg);font-weight:600}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{font:600 15px/1 var(--body);padding:13px 18px;border-radius:999px;border:1.5px solid var(--fg);background:var(--fg);color:var(--bg);text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn.ghost{background:transparent;color:var(--fg)}
+.btn:hover{transform:translateY(-1px)}
+.who{display:flex;align-items:center;gap:14px}
+.who img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center 22%;border:2px solid var(--accent)}
+.who span{font-size:14px;color:var(--muted);line-height:1.35}
 
-    <!-- Plugins -->
-    <link rel="stylesheet" href="css/plugins.css" />
+/* iflow */
+.flow{background:var(--rail);color:var(--rail-fg);border-radius:18px;padding:18px 18px 14px;position:relative;overflow:hidden}
+.flow-head{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11.5px;color:#8fb3ba;margin-bottom:8px;gap:8px;flex-wrap:wrap}
+.flow-head .ok{color:#7fe0b0}
+.flow svg{width:100%;height:auto;display:block}
+.flow text{font-family:var(--mono);font-size:11px;fill:#cfe1e4}
+.flow .lbl{font-size:8.5px;fill:#86a8ae}
+.flow .node{fill:#14414b;stroke:#2c6a74;stroke-width:1.2}
+.flow .node.hot{stroke:#4cc0b8}
+.flow .edge{fill:none;stroke:#2f6670;stroke-width:1.6;stroke-dasharray:4 4}
+.flow .pkt{fill:#f0a94e}
+.flow-log{font-family:var(--mono);font-size:11px;color:#86a8ae;margin-top:8px;min-height:1.5em}
+.flow-log b{color:#f0a94e;font-weight:500}
 
-    <!-- Core Style Css -->
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--line);margin-block:24px 0}
+.facts div{padding:22px 18px 22px 0}
+.facts div+div{padding-left:18px;border-left:1px solid var(--line)}
+.facts b{display:block;font-family:var(--display);font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.facts span{font-size:14px;color:var(--muted)}
 
-  <body>
-    <!-- Start page loading -->
-    <div id="preloader">
-      <div class="row loader">
-        <div class="loader-icon"></div>
+section{padding-block:clamp(56px,8vw,96px) 0}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;margin-bottom:32px;align-items:end}
+.sec-head h2{font-size:clamp(30px,4vw,44px);font-weight:800;letter-spacing:-.02em;line-height:1.02}
+.sec-head p{margin:0;color:var(--muted);max-width:36em}
+
+/* what */
+.what{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.what article{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.what h3{font-size:21px;font-weight:700}
+.what p{margin:0;color:var(--muted);font-size:16px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:8px}
+.chips span{font-family:var(--mono);font-size:12px;padding:3px 9px;border-radius:6px;background:var(--accent-soft);color:var(--accent-ink)}
+
+/* certs */
+.certs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.cert{border:1px solid var(--line);border-radius:14px;padding:22px 24px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;background:var(--surface)}
+.cert .seal{grid-row:1/span 3;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:11px;font-weight:500;background:var(--accent);color:var(--bg)}
+.cert.old .seal{background:var(--line);color:var(--muted)}
+.cert h3{font-size:19px;font-weight:700;line-height:1.2}
+.cert .meta{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.cert .meta code{font-family:var(--mono);font-size:12.5px;color:var(--accent-ink)}
+.cert a{font-size:14px;font-weight:600;text-decoration:none}
+.cert a:hover{text-decoration:underline}
+
+/* timeline */
+.tl{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.tl li{display:grid;grid-template-columns:170px minmax(0,1fr) minmax(0,1.4fr);gap:8px 28px;padding-block:20px;border-bottom:1px solid var(--line)}
+.tl .when{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:3px}
+.tl h3{font-size:19px;font-weight:700}
+.tl .co{font-size:15px;color:var(--accent-ink);font-weight:600}
+.tl p{margin:0;color:var(--muted);font-size:16px}
+
+/* contact */
+.contact{background:var(--rail);color:var(--rail-fg);border-radius:22px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px;align-items:center}
+.contact h2{font-size:clamp(32px,5vw,54px);font-weight:800;letter-spacing:-.02em;line-height:1}
+.contact p{color:#9fbac0;margin:14px 0 0;max-width:30em}
+.lines{display:flex;flex-direction:column;gap:12px}
+.line{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid #2a5560;border-radius:12px;padding:12px 14px;flex-wrap:wrap}
+.line .k{font-family:var(--mono);font-size:11px;color:#86a8ae;text-transform:uppercase;letter-spacing:.08em;display:block}
+.line .v{font-size:17px;user-select:all;overflow-wrap:anywhere}
+.line button{font:600 13px var(--body);background:#4cc0b8;color:#08171b;border:0;border-radius:999px;padding:8px 14px;cursor:pointer}
+.contact .btn.cv{margin-top:22px;background:#4cc0b8;border-color:#4cc0b8;color:#08171b}
+.line .v.tbd{color:#f0a94e;font-style:italic}
+footer{padding-block:40px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:minmax(0,1fr)}
+  .what{grid-template-columns:minmax(0,1fr)}
+  .certs{grid-template-columns:minmax(0,1fr)}
+  .sec-head{grid-template-columns:minmax(0,1fr)}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts div:nth-child(3){padding-left:0;border-left:0}
+  .facts div:nth-child(n+3){border-top:1px solid var(--line)}
+  .tl li{grid-template-columns:minmax(0,1fr)}
+  .contact{grid-template-columns:minmax(0,1fr)}
+  nav ul{display:none}
+}
+@media (prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav aria-label="Principal">
+    <span class="id">Jahir Diaz</span>
+    <ul>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#certificaciones">Certificaciones</a></li>
+      <li><a href="#trayectoria">Trayectoria</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">SAP BTP · Integration Suite · CAP</div>
+      <h1>Jahir Diaz</h1>
+      <p class="lede">Consultor y arquitecto SAP BTP. Diseño y administro plataformas BTP con federación de identidades y SSO, integro <b>SAP S/4HANA, SuccessFactors y Commerce Cloud</b> con sistemas no SAP, expongo APIs con API Management y construyo servicios con SAP CAP.</p>
+      <div class="cta">
+        <a class="btn" href="#contacto">Hablemos</a>
+        <a class="btn ghost" href="#certificaciones">Ver certificaciones</a>
+      </div>
+      <div class="who" style="margin-top:30px">
+        <img src="img/jahir-diaz.png" alt="Foto de Jahir Diaz">
+        <span>Más de 9 años en el ecosistema SAP<br>Lima, Perú · equipos de seis países</span>
       </div>
     </div>
-    <!-- End page loading -->
 
-    <!-- Start Header -->
-    <header class="header" data-scroll-index="0">
-      <!-- Start Navbar -->
-      <nav class="navbar navbar-expand-lg border-none bg-light-gray">
-        <div class="container sm-padding-10px-tb sm-padding-15px-lr">
-          <!-- start logo -->
-          <a class="logo" href="javascript:void(0);" data-scroll-nav="0">
-            <img
-              src="img/logo_black.png"
-              alt="Ashton - One Page Portfolio"
-              title="Ashton - One Page Portfolio"
-            />
-          </a>
-          <!-- end Logo -->
+    <figure class="flow" aria-label="Ilustración de un flujo de integración en SAP Cloud Integration" style="margin:0">
+      <div class="flow-head"><span>iFlow · Pedido_S4_a_Commerce</span><span class="ok">● Started</span></div>
+      <svg viewBox="0 0 420 250" role="img" aria-label="Emisor S/4HANA, paso Groovy, router y dos receptores: API REST y SFTP">
+        <path id="p1" class="edge" d="M74 125 H136"/>
+        <path id="p2" class="edge" d="M196 125 H244"/>
+        <path id="p3a" class="edge" d="M292 125 C312 125 312 62 330 62"/>
+        <path id="p3b" class="edge" d="M292 125 C312 125 312 188 330 188"/>
+        <g>
+          <rect class="node" x="8" y="98" width="66" height="54" rx="8"/>
+          <text x="41" y="122" text-anchor="middle">S/4HANA</text>
+          <text class="lbl" x="41" y="138" text-anchor="middle">IDoc</text>
+        </g>
+        <g>
+          <rect class="node hot" id="n-groovy" x="136" y="103" width="60" height="44" rx="8"/>
+          <text x="166" y="122" text-anchor="middle">Groovy</text>
+          <text class="lbl" x="166" y="137" text-anchor="middle">mapping</text>
+        </g>
+        <g>
+          <path class="node" id="n-router" d="M268 101 L292 125 L268 149 L244 125 Z"/>
+          <text class="lbl" x="268" y="168" text-anchor="middle">Router</text>
+        </g>
+        <g>
+          <rect class="node" x="330" y="38" width="84" height="48" rx="8"/>
+          <text x="372" y="59" text-anchor="middle">Commerce</text>
+          <text class="lbl" x="372" y="74" text-anchor="middle">OData · OAuth2</text>
+        </g>
+        <g>
+          <rect class="node" x="330" y="164" width="84" height="48" rx="8"/>
+          <text x="372" y="185" text-anchor="middle">Legacy</text>
+          <text class="lbl" x="372" y="200" text-anchor="middle">SFTP · X.509</text>
+        </g>
+        <circle class="pkt" id="pkt" r="5" cx="74" cy="125"/>
+      </svg>
+      <figcaption class="flow-log" id="log">MPL <b>Completed</b> · 3 pasos · Groovy · Router · OData</figcaption>
+    </figure>
+  </header>
 
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarContent"
-            aria-controls="navbarContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="icon-bar"><i class="fas fa-bars"></i></span>
-          </button>
+  <div class="facts">
+    <div><b>9+</b><span>años en SAP</span></div>
+    <div><b>4</b><span>certificaciones SAP</span></div>
+    <div><b>11</b><span>empresas y clientes</span></div>
+    <div><b>6</b><span>países</span></div>
+  </div>
 
-          <!-- navbar links -->
-          <div class="collapse navbar-collapse" id="navbarContent">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  href="javascript:void(0);"
-                  data-scroll-nav="0"
-                  >Home</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="javascript:void(0);"
-                  data-scroll-nav="1"
-                  >Sobre mi</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="javascript:void(0);"
-                  data-scroll-nav="2"
-                  >Experiencia</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="javascript:void(0);"
-                  data-scroll-nav="3"
-                  >Portafolio</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="javascript:void(0);"
-                  data-scroll-nav="4"
-                  >Servicios</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="javascript:void(0);"
-                  data-scroll-nav="6"
-                  >Contacto</a
-                >
-              </li>
-            </ul>
-          </div>
-          <!-- end navbar links -->
-        </div>
+  <section id="servicios">
+    <div class="sec-head">
+      <h2>Lo que hago</h2>
+      <p>Desde el diseño de la arquitectura de comunicación hasta el monitoreo de cada mensaje en producción.</p>
+    </div>
+    <div class="what">
+      <article>
+        <span class="eyebrow">Plataforma BTP</span>
+        <h3>Arquitectura y seguridad</h3>
+        <p>Diseño de arquitectura y administración de subcuentas, roles y suscripciones. Federación de identidades y Single Sign-On con SAP Cloud Identity Services.</p>
+        <div class="chips"><span>IAS</span><span>SSO</span><span>Federación</span><span>Cloud Foundry</span><span>Cloud Connector</span></div>
+      </article>
+      <article>
+        <span class="eyebrow">Cloud Integration</span>
+        <h3>Integraciones SAP y no SAP</h3>
+        <p>iFlows custom y paquetes estándar, Integration Advisor (MIG/MAG), diagramas de secuencia, seguridad y troubleshooting.</p>
+        <div class="chips"><span>Groovy</span><span>XSLT</span><span>IDoc</span><span>JMS</span><span>JDBC</span><span>SFTP</span><span>X.509</span><span>OAuth 2.0</span></div>
+      </article>
+      <article>
+        <span class="eyebrow">API Management</span>
+        <h3>APIs gobernadas</h3>
+        <p>Exposición de servicios SAP como APIs, configuración de API Providers y políticas de seguridad y tráfico.</p>
+        <div class="chips"><span>API Provider</span><span>Policies</span><span>OData v2/v4</span><span>REST</span><span>SOAP</span></div>
+      </article>
+      <article>
+        <span class="eyebrow">Desarrollo BTP</span>
+        <h3>Servicios y apps</h3>
+        <p>Servicios OData y microservicios con SAP CAP sobre HANA Cloud, apps custom en BTP y aplicaciones Fiori y UI5.</p>
+        <div class="chips"><span>SAP CAP</span><span>HANA Cloud</span><span>Fiori Elements</span><span>UI5</span><span>Cloud Connector</span></div>
+      </article>
+    </div>
+  </section>
 
-        <a
-          href="javascript:void(0)"
-          class="sidemenu_btn sm-display-none"
-          id="sidebar_toggle"
-        >
-          <span></span> <span></span> <span></span>
-        </a>
-      </nav>
-      <!-- End Navbar  -->
-
-      <!-- Start Banner Container -->
-      <div class="bg-light-gray padding-100px-top">
-        <div class="container">
-          <div class="row">
-            <div
-              class="col-md-7 col-sm-12 order-2 order-md-1 xs-padding-50px-tb"
-            >
-              <!-- Start Left Content -->
-              <div
-                class="padding-twenty-top sm-padding-fifteen-top xs-no-padding"
-              >
-                <h5
-                  class="
-                    no-margin
-                    font-size18
-                    xs-font-size16
-                    text-medium-gray
-                    padding-twelve-top
-                    sm-padding-five-top
-                    xs-no-padding
-                  "
-                >
-                  Hola, soy
-                </h5>
-                <h3
-                  class="
-                    text-uppercase
-                    font-size48
-                    md-font-size42
-                    sm-font-size36
-                    xs-font-size26
-                    font-weight-700
-                    margin-20px-bottom
-                  "
-                >
-                  Jahir Díaz
-                </h3>
-                <p
-                  class="
-                    width-50
-                    md-width-75
-                    xs-width-100
-                    font-size16
-                    xs-font-size14
-                    border-top border-bottom
-                    padding-10px-tb
-                  "
-                >
-                  UX Designer - FullStack Developer - SAP SCP/ CPI Consultant
-                </p>
-                <div
-                  class="social-links margin-30px-bottom xs-margin-20px-bottom"
-                >
-                  <a href="https://wa.me/51940610507" target="_blank"
-                    ><i class="fab fa-whatsapp"></i
-                  ></a>
-                  <a
-                    href="https://www.linkedin.com/in/jahirdiazpinedo"
-                    target="_blank"
-                    ><i class="fab fa-linkedin-in"></i
-                  ></a>
-                </div>
-                <!-- <a class="btn white" href="#portfolio"
-                  >Mira mi Portafolio!
-                  <i class="fas fa-arrow-right font-size15 margin-5px-left"></i
-                ></a> -->
-              </div>
-              <!-- End Left Content -->
-            </div>
-            <div
-              class="
-                col-md-5 col-sm-12
-                order-1 order-md-2
-                text-right
-                xs-text-center xs-border-bottom xs-padding-nineteen-half-lr
-                border-color-medium-gray
-              "
-            >
-              <!-- Start Right Image -->
-              <img src="img/fondo2.svg" alt="" />
-              <!-- End Right Image -->
-            </div>
-          </div>
-        </div>
+  <section id="certificaciones">
+    <div class="sec-head">
+      <h2>Certificaciones</h2>
+      <p>Las credenciales vigentes se pueden verificar en Credly.</p>
+    </div>
+    <div class="certs">
+      <div class="cert">
+        <div class="seal">2026</div>
+        <h3>SAP Certified – Integration Developer</h3>
+        <div class="meta">Emitida el 15 jul 2026 · vigente hasta 16 jul 2027</div>
+        <a href="https://www.credly.com/badges/9c239023-1620-4a00-8b91-6330ddd18ea8" target="_blank" rel="noopener">Verificar en Credly ↗</a>
       </div>
-      <!-- End Banner Container -->
-
-      <!-- Start Sidemenu -->
-      <div class="side-menu">
-        <div class="inner-wrapper">
-          <span class="btn-close" id="btn_sidebar_colse"></span>
-          <nav class="side-nav width-100">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  href="javascript:void(0);"
-                  data-scroll-nav="0"
-                  >Home</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="javascript:void(0);"
-                  data-scroll-nav="1"
-                  >Sobre mi</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="javascript:void(0);"
-                  data-scroll-nav="2"
-                  >Experiencia</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="javascript:void(0);"
-                  data-scroll-nav="3"
-                  >Portafolio</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="javascript:void(0);"
-                  data-scroll-nav="4"
-                  >Servicios</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="javascript:void(0);"
-                  data-scroll-nav="6"
-                  >Contactos</a
-                >
-              </li>
-            </ul>
-          </nav>
-
-          <!--<div class="side-footer width-100">
-                    <div class="social-links">
-                        <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
-                        <a href="javascript:void(0);"><i class="fab fa-twitter"></i></a>
-                        <a href="javascript:void(0);"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>-->
-        </div>
+      <div class="cert">
+        <div class="seal">2026</div>
+        <h3>SAP Certified – Solution Architect – SAP BTP</h3>
+        <div class="meta"><code>P_BTPA_2511</code> · emitida el 16 ene 2026 · vigente hasta 17 ene 2027</div>
+        <a href="https://www.credly.com/badges/c18416e7-dab7-4e17-bd8a-64e21876a033" target="_blank" rel="noopener">Verificar en Credly ↗</a>
       </div>
-      <!-- End Sidemenu -->
-
-      <!-- Close Sidemenu -->
-      <a id="close_sidebar" href="javascript:void(0);"></a>
-      <!-- End Sidemenu -->
-    </header>
-    <!-- End Header -->
-
-    <!-- Start About Section-->
-    <section data-scroll-index="1">
-      <div class="container">
-        <div class="row">
-          <div
-            class="
-              col-12
-              center-col
-              margin-70px-bottom
-              sm-margin-40px-bottom
-              xs-margin-30px-bottom
-              text-center
-            "
-          >
-            <h2
-              class="
-                font-size34
-                md-font-size30
-                sm-font-size26
-                xs-font-size24
-                font-weight-700
-                section-title
-              "
-            >
-              Sobre Mi
-            </h2>
-          </div>
-        </div>
-        <div class="row">
-          <!-- start about me section-->
-          <div class="col-lg-6 col-md-12 sm-margin-30px-bottom">
-            <p class="font-size15 xs-font-size14">
-              Además de tener el superpoder de estar sentado en un escritorio y
-              codificar durante más de 24 horas solo para entregar algo que hará
-              del mundo un lugar mejor, estoy trabajando en democratizar la
-              educación técnica y dar forma a la próxima generación de
-              ingenieros y desarrolladores.
-            </p>
-            <!-- <a
-              class="btn white"
-              href="https://github.com/jahir25/jahir25.github.io/files/5796540/CV.Jahir.Diaz.2020.v2.pdf"
-            >
-              <i class="fas fa-arrow-alt-circle-down font-size16"></i>
-              <span class="alt-font margin-5px-left">Descarga mi CV</span>
-            </a> -->
-          </div>
-          <!-- end about me section-->
-
-          <!-- start skill section-->
-          <div class="col-lg-6 col-md-12">
-            <div class="padding-20px-left sm-no-padding">
-              <div
-                class="
-                  skills
-                  width-100
-                  margin-40px-bottom
-                  sm-margin-30px-bottom
-                  xs-no-margin-bottom
-                "
-              >
-                <div class="prog-item">
-                  <p>Web Design</p>
-                  <div class="skills-progress">
-                    <span data-value="80%"></span>
-                  </div>
-                </div>
-                <div class="prog-item">
-                  <p>SAP Cloud Platform Consultant</p>
-                  <div class="skills-progress">
-                    <span data-value="90%"></span>
-                  </div>
-                </div>
-                <div class="prog-item">
-                  <p>SAP Cloud Platform Integration Consultant</p>
-                  <div class="skills-progress">
-                    <span data-value="90%"></span>
-                  </div>
-                </div>
-                <div class="prog-item">
-                  <p>Development</p>
-                  <div class="skills-progress">
-                    <span data-value="99%"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- end skill section-->
-        </div>
+      <div class="cert old">
+        <div class="seal">2020</div>
+        <h3>SAP Cloud Platform Integration</h3>
+        <div class="meta"><code>C_CPI_13</code> · 2020</div>
       </div>
-    </section>
-    <!-- End About Section-->
-
-    <!-- Start Timeline Section-->
-    <section class="bg-light-gray" data-scroll-index="2">
-      <div class="container">
-        <div class="row">
-          <div
-            class="
-              col-12
-              center-col
-              margin-70px-bottom
-              sm-margin-40px-bottom
-              xs-margin-30px-bottom
-              text-center
-            "
-          >
-            <h3
-              class="
-                font-weight-700 font-size32
-                md-font-size27
-                sm-font-size24
-                xs-font-size20
-                section-title
-              "
-            >
-              Mi Experiencia
-            </h3>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="main-timeline">
-              <!-- start experience section-->
-              <div class="timeline">
-                <div class="icon"></div>
-                <div class="date-content">
-                  <div class="date-outer">
-                    <span class="date">
-                      <span class="month">1 Año</span>
-                      <span class="year">2017</span>
-                    </span>
-                  </div>
-                </div>
-                <div class="timeline-content">
-                  <h5 class="title">Full Stack Developer</h5>
-                  <p class="description">
-                    Desarrollo de Aplicaciones utilizando las técnologias de
-                    Angular JS, PHP, Linux AWS.
-                  </p>
-                </div>
-              </div>
-              <!-- end experience section-->
-
-              <!-- start experience section-->
-              <div class="timeline">
-                <div class="icon"></div>
-                <div class="date-content">
-                  <div class="date-outer">
-                    <span class="date">
-                      <span class="month">1 Años</span>
-                      <span class="year">2017</span>
-                    </span>
-                  </div>
-                </div>
-                <div class="timeline-content">
-                  <h5 class="title">Consultor SAP UI5</h5>
-                  <p class="description">
-                    Desarrollo de aplicaciones bajo el framework de SAP UI5 en
-                    comunicación con PHP.
-                  </p>
-                </div>
-              </div>
-              <!-- end experience section-->
-
-              <!-- start experience section-->
-              <div class="timeline">
-                <div class="icon"></div>
-                <div class="date-content">
-                  <div class="date-outer">
-                    <span class="date">
-                      <span class="month">2 Años</span>
-                      <span class="year">2020</span>
-                    </span>
-                  </div>
-                </div>
-                <div class="timeline-content">
-                  <h5 class="title">
-                    Consultor SAP Cloud Platform (Certificado)
-                  </h5>
-                  <p class="description">
-                    Desarrollando aplicaciones utilizando los servicios
-                    proporcionado por el PaaS como Workflow, SAP HANA Service,
-                    Web IDE Full Stack, Portal, UI Theme Designer, Identity
-                    Authenticaction Service, Custom Domain, Git Service, SAP
-                    Build, Connectivity, Document Service. Diseñando la mejorar
-                    Arquitectura personalizada para cadá tipo de proyecto.
-                  </p>
-                </div>
-              </div>
-              <!-- end experience section-->
-
-              <!-- start experience section-->
-              <div class="timeline">
-                <div class="icon"></div>
-                <div class="date-content">
-                  <div class="date-outer">
-                    <span class="date">
-                      <span class="month">1 Año</span>
-                      <span class="year">2020</span>
-                    </span>
-                  </div>
-                </div>
-                <div class="timeline-content">
-                  <h5 class="title">
-                    SAP SAP Cloud Platform Integration (Certificado)
-                  </h5>
-                  <p class="description">
-                    Integrando distintos sistemas de SAP y no SAP, publicando y
-                    consumiendo API`s como REST, SOAP, IDOC, RFC, SMTP, SFTP.
-                  </p>
-                </div>
-              </div>
-              <!-- end experience section-->
-            </div>
-          </div>
-        </div>
+      <div class="cert old">
+        <div class="seal">2020</div>
+        <h3>SAP Cloud Platform</h3>
+        <div class="meta"><code>C_CP_11</code> · 2020</div>
       </div>
-    </section>
-    <!-- End Timeline Section-->
+    </div>
+  </section>
 
-    <!-- Start Portfolio Section -->
-    <section class="portfolio" data-scroll-index="3" id="portfolio">
-      <div class="container">
-        <div class="row">
-          <div
-            class="
-              col-12
-              center-col
-              margin-70px-bottom
-              sm-margin-40px-bottom
-              xs-margin-30px-bottom
-              text-center
-            "
-          >
-            <h3
-              class="
-                font-weight-700 font-size32
-                md-font-size27
-                sm-font-size24
-                xs-font-size20
-                section-title
-              "
-            >
-              Mi Portafolio
-            </h3>
-          </div>
-        </div>
-        <div class="row">
-          <!-- Start links -->
-          <div class="filtering col-sm-12 text-center">
-            <span data-filter="*" class="active">All</span>
-            <span data-filter=".integrat">Integration</span>
-            <span data-filter=".digiExpe">Digital Experience</span>
-            <span data-filter=".procAuto">Process Automation</span>
-            <span data-filter=".devEffi">Development Efficiency</span>
-          </div>
-          <!-- End links -->
-          <div class="clearfix"></div>
+  <section id="trayectoria">
+    <div class="sec-head">
+      <h2>Trayectoria</h2>
+      <p>De desarrollador full stack a arquitecto SAP BTP.</p>
+    </div>
+    <ol class="tl" reversed>
+      <li><span class="when">05/2026 – Actualidad</span><div><h3>Consultor SAP BTP</h3><span class="co">YPF Luz · Argentina</span></div><p>Arquitectura y administración de BTP, federación y SSO con IAS, apps custom y activación de iFlows estándar en CPI.</p></li>
+      <li><span class="when">01/2026 – 07/2026</span><div><h3>Consultor SAP BTP · Integración</h3><span class="co">Mercado Libre · Argentina</span></div><p>Integraciones en Cloud Integration, servicios con SAP CAP y aplicaciones SAP UI5.</p></li>
+      <li><span class="when">03/2024 – 04/2026</span><div><h3>Consultor SAP BTP</h3><span class="co">Latam Airlines · Brasil</span></div><p>Interfaces SAP y no SAP en Cloud Integration, APIs en API Management, servicios OData con CAP sobre HANA Cloud y apps Fiori.</p></li>
+      <li><span class="when">06/2025 – 12/2025</span><div><h3>Consultor SAP BTP · IS</h3><span class="co">Neoris</span></div><p>iFlows con Groovy avanzado y adaptadores SOAP, REST, SFTP, SuccessFactors, RFC, JDBC e IDoc; seguridad X.509 y OAuth 2.0.</p></li>
+      <li><span class="when">03/2023 – 03/2025</span><div><h3>Consultor SAP BTP · IS</h3><span class="co">Hiberus · España</span></div><p>Integraciones de S/4HANA, CAR, Commerce Cloud y Marketing Cloud; paquetes estándar, IDocs y Cloud Connector.</p></li>
+      <li><span class="when">11/2022 – 11/2024</span><div><h3>Consultor SAP BTP · IS · CAP</h3><span class="co">Stratesys · España</span></div><p>Apps UI5, servicios OData y microservicios con CAP, integraciones en CPI y CI/CD con Jenkins y SonarQube.</p></li>
+      <li><span class="when">10/2022 – 11/2024</span><div><h3>Consultor SAP BTP · IS</h3><span class="co">EY · México</span></div><p>Interfaces entre S/4HANA y sistemas de terceros, arquitectura de comunicación y depuración de integraciones.</p></li>
+      <li><span class="when">09/2022 – 03/2023</span><div><h3>Consultor SAP BTP · IS</h3><span class="co">SNP · Chile</span></div><p>Interfaces S/4HANA con Integration Advisor, APIs en API Management y apps UI5.</p></li>
+      <li><span class="when">12/2021 – 12/2022</span><div><h3>Arquitecto Consultor SAP BTP</h3><span class="co">SAASA · Perú</span></div><p>Arquitectura de soluciones, modelado de datos, servicios CAP y apps UI5 en tiempo real con WebSocket.</p></li>
+      <li><span class="when">01/2019 – 12/2021</span><div><h3>Consultor SAP BTP · CPI · PO</h3><span class="co">NTT DATA · Perú</span></div><p>Integraciones en CPI y PO, middleware en Java, workflows BTP y soporte de interfaces.</p></li>
+      <li><span class="when">01/2017 – 08/2018</span><div><h3>Consultor SAP BTP · UI5</h3><span class="co">Intelecta · Perú</span></div><p>Apps SAP UI5, servicios OData e integraciones de terceros con SAP.</p></li>
+      <li><span class="when">01/2017 – 12/2017</span><div><h3>Full Stack Developer</h3><span class="co">Intelecta · Perú</span></div><p>Startup de cambio de divisas con JavaScript, PHP y AngularJS sobre AWS EC2.</p></li>
+    </ol>
+  </section>
 
-          <!-- gallery -->
-          <div class="gallery text-center width-100">
-            <!-- start gallery item -->
-            <div class="col-md-4 items integrat">
-              <div class="item-img">
-                <img src="img/services/processintegration.jpeg" alt="image" />
-                <div class="item-img-overlay valign">
-                  <div class="overlay-info width-100 vertical-center">
-                    <a
-                      href="img/services/processintegration.jpeg"
-                      class="popimg"
-                    >
-                      <i class="fa fa-search-plus"></i>
-                    </a>
-                    <h6>Process Integration</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 items integrat">
-              <div class="item-img">
-                <img src="img/services/odataProvisioning.jpeg" alt="image" />
-                <div class="item-img-overlay valign">
-                  <div class="overlay-info width-100 vertical-center">
-                    <a
-                      href="img/services/odataProvisioning.jpeg"
-                      class="popimg"
-                    >
-                      <i class="fa fa-search-plus"></i>
-                    </a>
-                    <h6>OData Provisioning</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 items integrat">
-              <div class="item-img">
-                <img src="img/services/connectivity.jpeg" alt="image" />
-                <div class="item-img-overlay valign">
-                  <div class="overlay-info width-100 vertical-center">
-                    <a href="img/services/connectivity.jpeg" class="popimg">
-                      <i class="fa fa-search-plus"></i>
-                    </a>
-                    <h6>Connectivity</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 items digiExpe">
-              <div class="item-img">
-                <img src="img/services/portal.jpeg" alt="image" />
-                <div class="item-img-overlay valign">
-                  <div class="overlay-info width-100 vertical-center">
-                    <a href="img/services/portal.jpeg" class="popimg">
-                      <i class="fa fa-search-plus"></i>
-                    </a>
-                    <h6>Portal SCP</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 items digiExpe">
-              <div class="item-img">
-                <img src="img/services/documentservice.png" alt="image" />
-                <div class="item-img-overlay valign">
-                  <div class="overlay-info width-100 vertical-center">
-                    <a href="img/services/documentservice.jpeg" class="popimg">
-                      <i class="fa fa-search-plus"></i>
-                    </a>
-                    <h6>Document Service</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 items digiExpe">
-              <div class="item-img">
-                <img src="img/services/cai.jpeg" alt="image" />
-                <div class="item-img-overlay valign">
-                  <div class="overlay-info width-100 vertical-center">
-                    <a href="img/services/cai.jpeg" class="popimg">
-                      <i class="fa fa-search-plus"></i>
-                    </a>
-                    <h6>SAP Conversational AI</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 items procAuto">
-              <div class="item-img">
-                <img src="img/services/workflow.jpeg" alt="image" />
-                <div class="item-img-overlay valign">
-                  <div class="overlay-info width-100 vertical-center">
-                    <a href="img/services/workflow.jpeg" class="popimg">
-                      <i class="fa fa-search-plus"></i>
-                    </a>
-                    <h6>Workflow SCP</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 items procAuto">
-              <div class="item-img">
-                <img src="img/services/businessrules.jpeg" alt="image" />
-                <div class="item-img-overlay valign">
-                  <div class="overlay-info width-100 vertical-center">
-                    <a href="img/services/businessrules.jpeg" class="popimg">
-                      <i class="fa fa-search-plus"></i>
-                    </a>
-                    <h6>Business Rules</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 items devEffi">
-              <div class="item-img">
-                <img src="img/services/saphana.jpeg" alt="image" />
-                <div class="item-img-overlay valign">
-                  <div class="overlay-info width-100 vertical-center">
-                    <a href="img/services/saphana.jpeg" class="popimg">
-                      <i class="fa fa-search-plus"></i>
-                    </a>
-                    <h6>SAP Hana</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 items devEffi">
-              <div class="item-img">
-                <img src="img/services/sapwebide.jpeg" alt="image" />
-                <div class="item-img-overlay valign">
-                  <div class="overlay-info width-100 vertical-center">
-                    <a href="img/services/sapwebide.jpeg" class="popimg">
-                      <i class="fa fa-search-plus"></i>
-                    </a>
-                    <h6>SAP Web IDE Full-Stack</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 items devEffi">
-              <div class="item-img">
-                <img
-                  src="img/services/identityAuthentication.jpeg"
-                  alt="image"
-                />
-                <div class="item-img-overlay valign">
-                  <div class="overlay-info width-100 vertical-center">
-                    <a
-                      href="img/services/identityAuthentication.jpeg"
-                      class="popimg"
-                    >
-                      <i class="fa fa-search-plus"></i>
-                    </a>
-                    <h6>Indetity Authenticaction</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 items devEffi">
-              <div class="item-img">
-                <img
-                  src="img/services/platformidentityprovider.jpeg"
-                  alt="image"
-                />
-                <div class="item-img-overlay valign">
-                  <div class="overlay-info width-100 vertical-center">
-                    <a
-                      href="img/services/platformidentityprovider.jpeg"
-                      class="popimg"
-                    >
-                      <i class="fa fa-search-plus"></i>
-                    </a>
-                    <h6>Platform Indetity Provider</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 items devEffi">
-              <div class="item-img">
-                <img src="img/services/jobscheduler.jpeg" alt="image" />
-                <div class="item-img-overlay valign">
-                  <div class="overlay-info width-100 vertical-center">
-                    <a href="img/services/jobscheduler.jpeg" class="popimg">
-                      <i class="fa fa-search-plus"></i>
-                    </a>
-                    <h6>JOB Scheduler</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 items devEffi">
-              <div class="item-img">
-                <img src="img/services/authorazationtrust.jpeg" alt="image" />
-                <div class="item-img-overlay valign">
-                  <div class="overlay-info width-100 vertical-center">
-                    <a
-                      href="img/services/authorazationtrust.jpeg"
-                      class="popimg"
-                    >
-                      <i class="fa fa-search-plus"></i>
-                    </a>
-                    <h6>Authorization and Trust Management</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end gallery item -->
-
-            <div class="clear-fix"></div>
-          </div>
-        </div>
+  <section id="contacto">
+    <div class="contact">
+      <div>
+        <h2>¿Tienes un proyecto en SAP BTP?</h2>
+        <p>Integraciones, APIs o una arquitectura que revisar. Escríbeme y te respondo con los siguientes pasos.</p>
+        <a class="btn cv" href="cv/Jahir-Diaz-CV-SAP-BTP.pdf" download>Descargar CV (PDF)</a>
       </div>
-    </section>
-    <!-- End Portfolio Section -->
-
-    <!--  Start Services Section -->
-    <section class="services bg-light-gray" data-scroll-index="4">
-      <div class="container">
-        <div class="row">
-          <div
-            class="
-              col-12
-              center-col
-              margin-70px-bottom
-              sm-margin-40px-bottom
-              xs-margin-30px-bottom
-              text-center
-            "
-          >
-            <h3
-              class="
-                font-weight-700 font-size32
-                md-font-size27
-                sm-font-size24
-                xs-font-size20
-                section-title
-              "
-            >
-              Mi Servicio
-            </h3>
-          </div>
-        </div>
-        <div class="row">
-          <!-- start services item -->
-          <div
-            class="
-              col-lg-4 col-md-6
-              border-right border-bottom border-color-medium-gray
-              xs-no-border-right
-            "
-          >
-            <div
-              class="
-                text-center
-                padding-40px-tb
-                xs-padding-20px-bottom
-                padding-20px-lr
-                xs-no-padding-lr xs-no-padding-top
-              "
-            >
-              <div
-                class="
-                  display-inline-block
-                  margin-20px-bottom
-                  xs-margin-15px-bottom
-                "
-              >
-                <i class="icon icon-tools text-extra-dark-gray font-size36"></i>
-              </div>
-              <div
-                class="
-                  alt-font
-                  text-extra-dark-gray
-                  margin-10px-bottom
-                  font-size18
-                  xs-font-size16
-                "
-              >
-                Web Development
-              </div>
-              <p
-                class="
-                  width-85
-                  md-width-90
-                  xs-width-100
-                  center-col
-                  no-margin-bottom
-                "
-              >
-                Desarrollo de aplicaciones Web para distintos tipos de rubros.
-              </p>
-            </div>
-          </div>
-          <!-- end services item -->
-
-          <!-- start services item -->
-          <div
-            class="
-              col-lg-4 col-md-6
-              border-right border-bottom border-color-medium-gray
-              sm-no-border-right
-            "
-          >
-            <div
-              class="
-                text-center
-                padding-40px-tb
-                xs-padding-20px-tb
-                padding-20px-lr
-                xs-no-padding-lr
-              "
-            >
-              <div
-                class="
-                  display-inline-block
-                  margin-20px-bottom
-                  xs-margin-15px-bottom
-                "
-              >
-                <i class="icon icon-gears text-extra-dark-gray font-size36"></i>
-              </div>
-              <div
-                class="
-                  alt-font
-                  text-extra-dark-gray
-                  margin-10px-bottom
-                  font-size18
-                  xs-font-size16
-                "
-              >
-                Web Design
-              </div>
-              <p
-                class="
-                  width-85
-                  md-width-90
-                  xs-width-100
-                  center-col
-                  no-margin-bottom
-                "
-              >
-                Diseño de las paginas personalizadas aplicando UX y UI.
-              </p>
-            </div>
-          </div>
-          <!-- end services item -->
-
-          <!-- start services item -->
-          <div
-            class="
-              col-lg-4 col-md-6
-              sm-border-right
-              border-bottom border-color-medium-gray
-              xs-no-border-right
-            "
-          >
-            <div
-              class="
-                text-center
-                padding-40px-tb
-                xs-padding-20px-tb
-                padding-20px-lr
-                xs-no-padding-lr
-              "
-            >
-              <div
-                class="
-                  display-inline-block
-                  margin-20px-bottom
-                  xs-margin-15px-bottom
-                "
-              >
-                <i
-                  class="icon icon-mobile text-extra-dark-gray font-size36"
-                ></i>
-              </div>
-              <div
-                class="
-                  alt-font
-                  text-extra-dark-gray
-                  margin-10px-bottom
-                  font-size18
-                  xs-font-size16
-                "
-              >
-                SAP
-              </div>
-              <p
-                class="
-                  width-85
-                  md-width-90
-                  xs-width-100
-                  center-col
-                  no-margin-bottom
-                "
-              >
-                Desarrollo de aplicaciones a medida en la PaaS de SAP (CLOUD
-                PLATFORM).
-              </p>
-            </div>
-          </div>
-        </div>
+      <div class="lines">
+        <div class="line"><div><span class="k">Email</span><span class="v" id="em">jahirdiaz2595@gmail.com</span></div><button type="button" data-copy="em">Copiar</button></div>
+        <div class="line"><div><span class="k">Teléfono / WhatsApp</span><span class="v" id="ph">+51 940 610 507</span></div><button type="button" data-copy="ph">Copiar</button></div>
+        <div class="line"><div><span class="k">LinkedIn</span><span class="v tbd">Pendiente de agregar</span></div></div>
       </div>
-    </section>
-    <!-- End Services Section -->
+    </div>
+  </section>
 
-    <!-- Start Testimonials Section -->
-    <!-- End Testimonials Section -->
+  <footer><span>© 2026 Jahir Diaz</span><span class="mono">SAP BTP · Integration Suite · CAP</span></footer>
+</div>
 
-    <!-- Start Blog Section -->
+<script>
+document.querySelectorAll('[data-copy]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const el=document.getElementById(b.dataset.copy);const t=el.textContent.trim();
+    const done=()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar',1600)};
+    const sel=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Seleccionado'};
+    try{navigator.clipboard.writeText(t).then(done,sel)}catch(e){sel()}
+  });
+});
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const pkt=document.getElementById('pkt'),log=document.getElementById('log');
+  const routes=[['p1','p2','p3a','Commerce','OData'],['p1','p2','p3b','Legacy','SFTP']];
+  let k=0;
+  function run(){
+    const r=routes[k++%2];const paths=r.slice(0,3).map(id=>document.getElementById(id));
+    const lens=paths.map(p=>p.getTotalLength());const total=lens.reduce((a,b)=>a+b,0);
+    const dur=2600;let t0=null;
+    log.innerHTML='MPL <b>Processing</b> · Groovy → Router → '+r[3];
+    function step(ts){
+      if(!t0)t0=ts;let d=Math.min((ts-t0)/dur,1)*total;let i=0;
+      while(i<paths.length-1&&d>lens[i]){d-=lens[i];i++}
+      const pt=paths[i].getPointAtLength(Math.min(d,lens[i]));
+      pkt.setAttribute('cx',pt.x);pkt.setAttribute('cy',pt.y);
+      if(ts-t0<dur)requestAnimationFrame(step);
+      else{log.innerHTML='MPL <b>Completed</b> · '+r[3]+' · '+r[4];setTimeout(run,1500)}
+    }
+    requestAnimationFrame(step);
+  }
+  setTimeout(run,600);
+})();
+</script>
 
-    <!-- End Blog Section -->
-
-    <!-- Start Contact Section -->
-    <section class="contact no-padding-bottom" data-scroll-index="6">
-      <div
-        class="
-          bg-light-gray
-          padding-30px-tb
-          border-top border-color-medium-gray
-        "
-      >
-        <div class="container">
-          <div class="row info">
-            <!-- start quickly contact -->
-
-            <div
-              class="
-                col-lg-4 col-md-3
-                item
-                text-center
-                border-right
-                xs-no-border-right xs-border-bottom
-                border-color-medium-gray
-                xs-margin-20px-bottom xs-padding-20px-bottom
-              "
-            >
-              <span class="icon font-size32"><i class="icon-phone"></i></span>
-              <div class="cont">
-                <h6>Phone</h6>
-                <p>(+51) 940 610 507</p>
-              </div>
-            </div>
-            <div
-              class="
-                col-lg-4 col-md-5
-                item
-                text-center
-                border-right
-                xs-no-border-right xs-border-bottom
-                border-color-medium-gray
-                xs-margin-20px-bottom xs-padding-20px-bottom
-              "
-            >
-              <span class="icon font-size32"><i class="icon-map"></i></span>
-              <div class="cont">
-                <h6></h6>
-                <p>Perú - Lima</p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-4 item text-center">
-              <span class="icon font-size32"
-                ><i class="icon-envelope"></i
-              ></span>
-              <div class="cont">
-                <h6>Email</h6>
-                <p>jahirdiaz2595@gmail.com</p>
-              </div>
-            </div>
-          </div>
-          <!-- end quickly contact -->
-        </div>
-      </div>
-    </section>
-    <!-- End Contact Section -->
-
-    <!--  Start Footer Section -->
-    <footer class="bg-black">
-      <div class="footer-bottom">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 col-sm-12 text-center">
-              <span
-                class="
-                  font-size13
-                  text-uppercase
-                  letter-spacing-1
-                  text-light-gray
-                "
-                >&copy; 2020 - Jahir Díaz</span
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="back-to-top" class="back-to-top reveal">
-        <i class="fa fa-angle-up"></i>
-      </div>
-    </footer>
-    <!-- End Footer Section -->
-
-    <!-- all js include start -->
-
-    <!-- Java script -->
-    <script src="js/core.min.js"></script>
-
-    <!-- custom scripts -->
-    <script src="js/scripts.js"></script>
-
-    <!-- contact form scripts -->
-    <script src="js/mailform/jquery.form.min.js"></script>
-    <script src="js/mailform/jquery.rd-mailform.min.c.js"></script>
-
-    <!-- all js include end -->
-  </body>
+</body>
 </html>

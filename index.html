@@ -3,350 +3,590 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Jahir Diaz, consultor y arquitecto SAP BTP: Integration Suite, API Management, SAP CAP, federación y SSO. Certificado SAP Solution Architect – SAP BTP e Integration Developer.">
-<meta property="og:title" content="Jahir Diaz · SAP BTP">
-<meta property="og:description" content="Consultor y arquitecto SAP BTP especializado en Integration Suite.">
+<meta name="description" content="Jahir Díaz, arquitecto SAP BTP. Implemento IA en procesos SAP con SAP Document AI, Joule, SAP CAP, Integration Suite y Event Mesh.">
+<meta property="og:title" content="Jahir Díaz · IA aplicada en SAP BTP">
+<meta property="og:description" content="Implemento IA que llega a producción en SAP: Document AI, Joule, CAP e Integration Suite.">
 <meta property="og:image" content="https://jahir25.github.io/img/jahir-diaz.png">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#F5F6F8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B0E14" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="img/favicon.png">
-<title>Jahir Diaz · SAP BTP</title>
+<title>Jahir Díaz · IA aplicada en SAP BTP</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Schibsted+Grotesk:wght@500;700;800&family=Source+Sans+3:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: una sola columna editorial; el hero muestra un iFlow vivo (emisor → Groovy → router → receptores) como tesis del perfil */
-:root{
-  --bg:#f3f7f7; --surface:#ffffff; --fg:#10242b; --muted:#4e636a; --line:#d3dfe1;
-  --accent:#167f80; --accent-ink:#0f5f60; --accent-soft:#dff0ef; --signal:#d9892b;
-  --rail:#0f2f37; --rail-fg:#e6eef0;
-  --display:"Schibsted Grotesk",ui-sans-serif,system-ui,sans-serif;
-  --body:"Source Sans 3",ui-sans-serif,system-ui,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+/* Layout: titular a todo el ancho, debajo copy + demo de extracción en vivo; luego proceso, capacidades (bento), experiencia, certificaciones y contacto.
+   Radios: botones 10px, tarjetas 14px, chips 6px. */
+:root {
+  --bg: #F5F6F8;
+  --surface: #FFFFFF;
+  --ink: #0E1320;
+  --ink-2: #4A5468;
+  --line: #DFE3EA;
+  --accent: #2D5BFF;
+  --accent-ink: #1F45D6;
+  --accent-soft: #E9EEFF;
+  --ok: #12805C;
+  --warn: #B25E09;
+  --on-accent: #FFFFFF;
+  --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --gutter: clamp(16px, 4vw, 48px);
+  --shadow: 0 1px 2px rgba(14, 19, 32, .05), 0 12px 32px -12px rgba(14, 19, 32, .14);
+  color-scheme: light;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0b1d22; --surface:#11282e; --fg:#e4eef0; --muted:#9db3b9; --line:#21414a;
-  --accent:#4cc0b8; --accent-ink:#8fdcd5; --accent-soft:#143a3f; --signal:#f0a94e;
-  --rail:#08171b; --rail-fg:#e4eef0; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0b1d22; --surface:#11282e; --fg:#e4eef0; --muted:#9db3b9; --line:#21414a;
-  --accent:#4cc0b8; --accent-ink:#8fdcd5; --accent-soft:#143a3f; --signal:#f0a94e;
-  --rail:#08171b; --rail-fg:#e4eef0; color-scheme:dark}
-*{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;margin:0}
-.wrap{max-width:1080px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
-a{color:var(--accent-ink)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-.mono{font-family:var(--mono)}
-h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
-.eyebrow{font-family:var(--mono);font-size:13px;color:var(--accent-ink);letter-spacing:.03em}
-
-/* nav */
-nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px;flex-wrap:wrap}
-nav .id{font-family:var(--display);font-weight:800;font-size:18px;letter-spacing:-.01em}
-nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
-nav a{color:var(--muted);text-decoration:none;font-size:15px}
-nav a:hover{color:var(--fg)}
-
-/* hero */
-.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center;padding-block:clamp(24px,5vw,56px) 40px}
-.hero h1{font-size:clamp(52px,8.5vw,104px);font-weight:800;line-height:.92;letter-spacing:-.025em;margin-block:14px 18px}
-.hero .lede{font-size:clamp(18px,2vw,21px);color:var(--muted);max-width:34em;margin:0}
-.hero .lede b{color:var(--fg);font-weight:600}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.btn{font:600 15px/1 var(--body);padding:13px 18px;border-radius:999px;border:1.5px solid var(--fg);background:var(--fg);color:var(--bg);text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
-.btn.ghost{background:transparent;color:var(--fg)}
-.btn:hover{transform:translateY(-1px)}
-.who{display:flex;align-items:center;gap:14px}
-.who img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center 22%;border:2px solid var(--accent)}
-.who span{font-size:14px;color:var(--muted);line-height:1.35}
-
-/* iflow */
-.flow{background:var(--rail);color:var(--rail-fg);border-radius:18px;padding:18px 18px 14px;position:relative;overflow:hidden}
-.flow-head{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11.5px;color:#8fb3ba;margin-bottom:8px;gap:8px;flex-wrap:wrap}
-.flow-head .ok{color:#7fe0b0}
-.flow svg{width:100%;height:auto;display:block}
-.flow text{font-family:var(--mono);font-size:11px;fill:#cfe1e4}
-.flow .lbl{font-size:8.5px;fill:#86a8ae}
-.flow .node{fill:#14414b;stroke:#2c6a74;stroke-width:1.2}
-.flow .node.hot{stroke:#4cc0b8}
-.flow .edge{fill:none;stroke:#2f6670;stroke-width:1.6;stroke-dasharray:4 4}
-.flow .pkt{fill:#f0a94e}
-.flow-log{font-family:var(--mono);font-size:11px;color:#86a8ae;margin-top:8px;min-height:1.5em}
-.flow-log b{color:#f0a94e;font-weight:500}
-
-/* facts */
-.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--line);margin-block:24px 0}
-.facts div{padding:22px 18px 22px 0}
-.facts div+div{padding-left:18px;border-left:1px solid var(--line)}
-.facts b{display:block;font-family:var(--display);font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.facts span{font-size:14px;color:var(--muted)}
-
-section{padding-block:clamp(56px,8vw,96px) 0}
-.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;margin-bottom:32px;align-items:end}
-.sec-head h2{font-size:clamp(30px,4vw,44px);font-weight:800;letter-spacing:-.02em;line-height:1.02}
-.sec-head p{margin:0;color:var(--muted);max-width:36em}
-
-/* what */
-.what{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.what article{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:10px}
-.what h3{font-size:21px;font-weight:700}
-.what p{margin:0;color:var(--muted);font-size:16px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:8px}
-.chips span{font-family:var(--mono);font-size:12px;padding:3px 9px;border-radius:6px;background:var(--accent-soft);color:var(--accent-ink)}
-
-/* certs */
-.certs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.cert{border:1px solid var(--line);border-radius:14px;padding:22px 24px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;background:var(--surface)}
-.cert .seal{grid-row:1/span 3;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:11px;font-weight:500;background:var(--accent);color:var(--bg)}
-.cert.old .seal{background:var(--line);color:var(--muted)}
-.cert h3{font-size:19px;font-weight:700;line-height:1.2}
-.cert .meta{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
-.cert .meta code{font-family:var(--mono);font-size:12.5px;color:var(--accent-ink)}
-.cert a{font-size:14px;font-weight:600;text-decoration:none}
-.cert a:hover{text-decoration:underline}
-
-/* timeline */
-.tl{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
-.tl li{display:grid;grid-template-columns:170px minmax(0,1fr) minmax(0,1.4fr);gap:8px 28px;padding-block:20px;border-bottom:1px solid var(--line)}
-.tl .when{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:3px}
-.tl h3{font-size:19px;font-weight:700}
-.tl .co{font-size:15px;color:var(--accent-ink);font-weight:600}
-.tl p{margin:0;color:var(--muted);font-size:16px}
-
-/* contact */
-.contact{background:var(--rail);color:var(--rail-fg);border-radius:22px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px;align-items:center}
-.contact h2{font-size:clamp(32px,5vw,54px);font-weight:800;letter-spacing:-.02em;line-height:1}
-.contact p{color:#9fbac0;margin:14px 0 0;max-width:30em}
-.lines{display:flex;flex-direction:column;gap:12px}
-.line{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid #2a5560;border-radius:12px;padding:12px 14px;flex-wrap:wrap}
-.line .k{font-family:var(--mono);font-size:11px;color:#86a8ae;text-transform:uppercase;letter-spacing:.08em;display:block}
-.line .v{font-size:17px;user-select:all;overflow-wrap:anywhere}
-.line button{font:600 13px var(--body);background:#4cc0b8;color:#08171b;border:0;border-radius:999px;padding:8px 14px;cursor:pointer}
-.contact .btn.cv{margin-top:22px;background:#4cc0b8;border-color:#4cc0b8;color:#08171b}
-.line .lk{font:600 13px var(--body);background:#4cc0b8;color:#08171b;border-radius:999px;padding:8px 14px;text-decoration:none}
-.line .v.tbd{color:#f0a94e;font-style:italic}
-footer{padding-block:40px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-
-@media (max-width:860px){
-  .hero{grid-template-columns:minmax(0,1fr)}
-  .what{grid-template-columns:minmax(0,1fr)}
-  .certs{grid-template-columns:minmax(0,1fr)}
-  .sec-head{grid-template-columns:minmax(0,1fr)}
-  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .facts div:nth-child(3){padding-left:0;border-left:0}
-  .facts div:nth-child(n+3){border-top:1px solid var(--line)}
-  .tl li{grid-template-columns:minmax(0,1fr)}
-  .contact{grid-template-columns:minmax(0,1fr)}
-  nav ul{display:none}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B0E14; --surface: #121722; --ink: #E9EDF5; --ink-2: #A3ADC2; --line: #232B3B;
+    --accent: #7C9CFF; --accent-ink: #A9BEFF; --accent-soft: #1A2340; --ok: #3CCB8F; --warn: #F2A54A; --on-accent: #0B0E14;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 16px 40px -16px rgba(0, 0, 0, .6);
+    color-scheme: dark;
+  }
 }
-@media (prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+:root[data-theme="dark"] {
+  --bg: #0B0E14; --surface: #121722; --ink: #E9EDF5; --ink-2: #A3ADC2; --line: #232B3B;
+  --accent: #7C9CFF; --accent-ink: #A9BEFF; --accent-soft: #1A2340; --ok: #3CCB8F; --warn: #F2A54A; --on-accent: #0B0E14;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 16px 40px -16px rgba(0, 0, 0, .6);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; scrollbar-color: var(--line) var(--bg); }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1.0625rem/1.6 var(--font); -webkit-font-smoothing: antialiased; caret-color: var(--accent); }
+::selection { background: var(--accent); color: var(--on-accent); }
+a { color: inherit; text-underline-offset: .22em; text-decoration-thickness: 1px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-inline: var(--gutter); }
+
+/* Nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; gap: 28px; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; object-position: center 22%; }
+.brand b { font-weight: 700; font-stretch: 112%; }
+.nav ul { display: flex; gap: 24px; list-style: none; margin: 0 0 0 auto; padding: 0; font-size: .95rem; }
+.nav ul a { text-decoration: none; color: var(--ink-2); transition: color 160ms ease; }
+@media (hover: hover) and (pointer: fine) { .nav ul a:hover { color: var(--ink); } }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; white-space: nowrap; font: 600 .98rem/1 var(--font); padding: 14px 20px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; cursor: pointer; transition: transform 160ms var(--ease), background-color 160ms ease, border-color 160ms ease, color 160ms ease; }
+.btn:active { transform: scale(0.97); }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { border-color: var(--ink-2); }
+  .btn-primary:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+}
+.nav .btn { padding: 10px 16px; font-size: .9rem; }
+
+/* Hero */
+.hero { padding-block: clamp(36px, 6vw, 72px) 0; }
+.hero h1 { font-size: clamp(2.3rem, 5.4vw, 4.6rem); font-weight: 700; font-stretch: 108%; line-height: 1.02; letter-spacing: -.03em; max-width: 24ch; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 56px); margin-top: clamp(28px, 4vw, 44px); align-items: start; }
+.hero-copy { display: grid; gap: 26px; }
+.lede { font-size: 1.15rem; color: var(--ink-2); max-width: 36ch; }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.who { display: flex; align-items: center; gap: 14px; padding-top: 22px; border-top: 1px solid var(--line); }
+.who img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; object-position: center 22%; }
+.who b { display: block; font-stretch: 108%; }
+.who span { display: block; font-size: .9rem; color: var(--ink-2); line-height: 1.4; }
+
+/* Demo */
+.demo { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; min-width: 0; margin: 0; }
+.demo-head { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.demo-head .file { font: 500 .85rem var(--mono); color: var(--ink); }
+.pill { font: 500 .75rem var(--mono); padding: 3px 9px; border-radius: 6px; background: var(--accent-soft); color: var(--accent-ink); }
+.pill.busy { color: var(--warn); background: color-mix(in srgb, var(--warn) 14%, transparent); }
+.demo-head .btn { margin-left: auto; padding: 8px 12px; font-size: .85rem; }
+.demo-body { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
+.doc { position: relative; padding: 18px; border-right: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 55%, var(--surface)); overflow: hidden; font-size: .78rem; line-height: 1.45; color: var(--ink-2); }
+.doc .paper { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px; display: grid; gap: 10px; }
+.doc .row { display: flex; justify-content: space-between; gap: 10px; }
+.doc b { color: var(--ink); font-weight: 600; }
+.doc .lines { border-top: 1px dashed var(--line); padding-top: 8px; display: grid; gap: 4px; }
+.doc [data-f] { border-radius: 3px; transition: background-color 200ms ease, box-shadow 200ms ease, color 200ms ease; font-family: var(--mono); font-size: .74rem; }
+.doc [data-f].hit { background: var(--accent-soft); box-shadow: 0 0 0 2px var(--accent-soft); color: var(--accent-ink); }
+.doc [data-f].low { background: color-mix(in srgb, var(--warn) 16%, transparent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--warn) 16%, transparent); color: var(--warn); }
+.scan { position: absolute; left: 0; right: 0; top: 0; height: 56px; pointer-events: none; opacity: 0; background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--accent) 22%, transparent) 70%, var(--accent) 71%, transparent 73%); }
+.scanning .scan { animation: scan 1500ms var(--ease) both; }
+@keyframes scan { from { opacity: 1; transform: translateY(-56px); } 90% { opacity: 1; } to { opacity: 0; transform: translateY(420px); } }
+
+.fields { padding: 8px 0; min-width: 0; }
+.fields table { width: 100%; border-collapse: collapse; font-size: .86rem; }
+.fields th { text-align: left; font: 500 .7rem var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--ink-2); padding: 6px 16px; }
+.fields td { padding: 7px 16px; border-top: 1px solid var(--line); vertical-align: middle; }
+.fields td:first-child { color: var(--ink-2); }
+.fields td.v { font: 500 .8rem var(--mono); color: var(--ink); overflow-wrap: anywhere; }
+.conf { display: flex; align-items: center; gap: 8px; font: 500 .78rem var(--mono); font-variant-numeric: tabular-nums; }
+.conf i { display: block; height: 4px; border-radius: 2px; background: var(--ok); width: calc(var(--c) * 44px); transition: background-color 200ms ease; }
+tr.low .conf { color: var(--warn); }
+tr.low .conf i { background: var(--warn); }
+tr td.v, tr .conf { transition: opacity 220ms ease; }
+tr.pending td.v, tr.pending .conf { opacity: .2; }
+
+.demo-foot { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 18px; align-items: center; padding: 16px 18px; border-top: 1px solid var(--line); }
+.threshold label { display: flex; justify-content: space-between; font-weight: 600; font-size: .9rem; margin-bottom: 6px; }
+.threshold output { font: 500 .9rem var(--mono); color: var(--accent-ink); }
+.threshold input { width: 100%; accent-color: var(--accent); }
+.route { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 10px; background: color-mix(in srgb, var(--ok) 12%, transparent); color: var(--ink); font-size: .9rem; line-height: 1.35; transition: background-color 200ms ease; }
+.route b { display: block; color: var(--ok); font-size: .95rem; }
+.route.review { background: color-mix(in srgb, var(--warn) 13%, transparent); }
+.route.review b { color: var(--warn); }
+.route svg { width: 22px; height: 22px; flex: none; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; color: var(--ok); }
+.route.review svg { color: var(--warn); }
+.demo-note { padding: 0 18px 16px; font-size: .8rem; color: var(--ink-2); }
+
+/* Sections */
+section { padding-block: clamp(72px, 10vw, 128px) 0; }
+.h2 { font-size: clamp(1.9rem, 3.6vw, 3rem); font-weight: 700; font-stretch: 108%; line-height: 1.05; letter-spacing: -.025em; max-width: 22ch; }
+.intro { margin-top: 16px; color: var(--ink-2); max-width: 60ch; font-size: 1.1rem; }
+
+/* Process */
+.steps { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); counter-reset: s; }
+.steps li { counter-increment: s; padding: 0 22px 0 0; position: relative; }
+.steps li::before { content: counter(s, decimal-leading-zero); display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); font: 500 .85rem var(--mono); color: var(--accent-ink); position: relative; z-index: 1; }
+.steps li::after { content: ""; position: absolute; top: 20px; left: 40px; right: 0; height: 1px; background: var(--line); }
+.steps li:last-child::after { display: none; }
+.steps h3 { margin: 16px 0 6px; font-size: 1.12rem; font-stretch: 105%; }
+.steps p { color: var(--ink-2); font-size: .95rem; }
+
+/* Bento */
+.bento { margin-top: 48px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.cell { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 26px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.cell h3 { font-size: 1.25rem; font-stretch: 105%; }
+.cell p { color: var(--ink-2); font-size: .97rem; }
+.cell.big { grid-column: span 2; grid-row: span 2; background: var(--accent-soft); border-color: transparent; }
+.cell.big h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
+.cell.big p { color: var(--ink); max-width: 46ch; font-size: 1.05rem; }
+.cell.big pre { margin: auto 0 0; padding: 16px 18px; border-radius: 10px; background: var(--surface); font: 400 .82rem/1.65 var(--mono); color: var(--ink); overflow-x: auto; }
+.cell.big pre .k { color: var(--accent-ink); }
+.cell.big pre .w { color: var(--warn); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+.chips span { font: 400 .76rem var(--mono); padding: 3px 9px; border-radius: 6px; background: var(--bg); color: var(--ink-2); }
+.cell.big .chips span { background: var(--surface); }
+
+/* Experience */
+.xp { margin-top: 44px; border-top: 1px solid var(--line); }
+.xp details { border-bottom: 1px solid var(--line); }
+.xp summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 160px minmax(0, 1fr) minmax(0, 1.2fr) 28px; gap: 6px 28px; padding: 20px 0; align-items: baseline; }
+.xp summary::-webkit-details-marker { display: none; }
+.xp .when { font: 500 .8rem var(--mono); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.xp h3 { font-size: 1.08rem; font-stretch: 104%; }
+.xp .co { display: block; font-size: .95rem; color: var(--accent-ink); font-weight: 600; }
+.xp .sum { color: var(--ink-2); font-size: .97rem; }
+.xp .plus { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--line); position: relative; align-self: center; transition: background-color 160ms ease, border-color 160ms ease; }
+.xp .plus::before, .xp .plus::after { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 1.5px; background: var(--ink); transform: translate(-50%, -50%); }
+.xp .plus::after { transform: translate(-50%, -50%) rotate(90deg); transition: transform 200ms var(--ease); }
+.xp details[open] .plus { background: var(--accent); border-color: var(--accent); }
+.xp details[open] .plus::before, .xp details[open] .plus::after { background: var(--on-accent); }
+.xp details[open] .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
+@media (hover: hover) and (pointer: fine) { .xp summary:hover h3 { color: var(--accent-ink); } }
+.xp .body { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 28px; padding: 0 0 24px; }
+.xp ul { grid-column: 2; margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; max-width: 78ch; }
+.xp li { position: relative; padding-left: 18px; color: var(--ink-2); }
+.xp li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.xp li b { color: var(--ink); font-weight: 600; }
+.xp .chips { grid-column: 2; }
+
+/* Certs */
+.certs { margin-top: 44px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.cert { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; display: grid; gap: 4px; }
+.cert small { font: 500 .72rem var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--ok); }
+.cert.old small { color: var(--ink-2); }
+.cert h3 { font-size: 1.12rem; font-stretch: 104%; line-height: 1.25; }
+.cert .meta { font-size: .9rem; color: var(--ink-2); }
+.cert .meta code { font: 500 .82rem var(--mono); color: var(--accent-ink); }
+.cert a { font-size: .9rem; font-weight: 600; color: var(--accent-ink); width: fit-content; }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
+.contact p { color: var(--ink-2); max-width: 44ch; margin-top: 16px; font-size: 1.1rem; }
+.contact-lines { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+.line { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px; flex-wrap: wrap; }
+.line + .line { border-top: 1px solid var(--line); }
+.line .k { display: block; font: 500 .72rem var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--ink-2); }
+.line .v { font-size: 1.05rem; user-select: all; overflow-wrap: anywhere; }
+.line .btn { padding: 9px 14px; font-size: .88rem; }
+footer { padding-block: 72px 40px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--ink-2); font-size: .9rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .scanning .scan { animation: none; }
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .hero-grid, .contact { grid-template-columns: minmax(0, 1fr); }
+  .steps { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .steps li { padding: 0 0 0 58px; }
+  .steps li::before { position: absolute; left: 0; top: 0; }
+  .steps li::after { top: 40px; bottom: -24px; left: 20px; right: auto; width: 1px; height: auto; }
+  .steps h3 { margin-top: 6px; }
+  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cell.big { grid-row: auto; }
+  .xp summary { grid-template-columns: minmax(0, 1fr) 28px; }
+  .xp summary > *:not(.plus) { grid-column: 1; }
+  .xp .plus { grid-column: 2; grid-row: 1 / span 3; }
+  .xp .body { grid-template-columns: minmax(0, 1fr); padding-right: 40px; }
+  .xp ul, .xp .chips { grid-column: 1; }
+}
+@media (max-width: 720px) {
+  .nav ul { display: none; }
+  .nav .btn { margin-left: auto; }
+  .demo-body, .demo-foot { grid-template-columns: minmax(0, 1fr); }
+  .doc { border-right: 0; border-bottom: 1px solid var(--line); }
+  .bento, .certs { grid-template-columns: minmax(0, 1fr); }
+  .cell.big { grid-column: auto; }
+  .fields th, .fields td { padding-inline: 12px; }
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <nav aria-label="Principal">
-    <span class="id">Jahir Diaz</span>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="img/jahir-diaz.png" alt=""><b>Jahir Díaz</b></a>
     <ul>
-      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#proceso">Cómo trabajo</a></li>
+      <li><a href="#capacidades">Capacidades</a></li>
+      <li><a href="#experiencia">Experiencia</a></li>
       <li><a href="#certificaciones">Certificaciones</a></li>
-      <li><a href="#trayectoria">Trayectoria</a></li>
-      <li><a href="#contacto">Contacto</a></li>
     </ul>
-  </nav>
+    <a class="btn btn-primary" href="#contacto">Contactar</a>
+  </div>
+</header>
 
-  <header class="hero">
-    <div>
-      <div class="eyebrow">SAP BTP · Integration Suite · CAP</div>
-      <h1>Jahir Diaz</h1>
-      <p class="lede">Consultor y arquitecto SAP BTP. Diseño y administro plataformas BTP con federación de identidades y SSO, integro <b>SAP S/4HANA, SuccessFactors y Commerce Cloud</b> con sistemas no SAP, expongo APIs con API Management y construyo servicios con SAP CAP.</p>
-      <div class="cta">
-        <a class="btn" href="#contacto">Hablemos</a>
-        <a class="btn ghost" href="#certificaciones">Ver certificaciones</a>
+<main id="top">
+  <div class="wrap hero">
+    <h1>IA que llega a <em>producción</em> en SAP BTP.</h1>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="lede">Implemento SAP Document AI, Joule y automatización sobre SAP BTP, conectadas a tus procesos con Integration Suite y CAP.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="#contacto">Contactar</a>
+          <a class="btn" href="#experiencia">Ver experiencia</a>
+        </div>
+        <div class="who">
+          <img src="img/jahir-diaz.png" alt="Foto de Jahir Díaz">
+          <div><b>Jahir Díaz · Arquitecto SAP BTP</b><span>Más de 9 años en SAP. Certificado Solution Architect e Integration Developer.</span></div>
+        </div>
       </div>
-      <div class="who" style="margin-top:30px">
-        <img src="img/jahir-diaz.png" alt="Foto de Jahir Diaz">
-        <span>Más de 9 años en el ecosistema SAP<br>Lima, Perú · equipos de seis países</span>
-      </div>
+
+      <figure class="demo" id="demo" aria-labelledby="demo-title">
+        <div class="demo-head">
+          <span class="file" id="demo-title">factura_ejemplo.pdf</span>
+          <span class="pill" id="status">Extraído</span>
+          <button class="btn" type="button" id="rerun">Volver a extraer</button>
+        </div>
+        <div class="demo-body">
+          <div class="doc" aria-hidden="true">
+            <div class="scan"></div>
+            <div class="paper">
+              <div class="row"><b data-f="0">Ferretería Andina S.A.C.</b><span>FACTURA</span></div>
+              <div class="row"><span>RUC <span data-f="1">20512345678</span></span><span data-f="2">F001-004817</span></div>
+              <div class="row"><span>Emisión <span data-f="3">14/09/2026</span></span><span>OC <span data-f="4">4500018236</span></span></div>
+              <div class="lines">
+                <div class="row"><span>Tubería PVC 4" x 3 m (120)</span><span>7,560.00</span></div>
+                <div class="row"><span>Codo PVC 4" 90° (240)</span><span>4,920.00</span></div>
+              </div>
+              <div class="lines">
+                <div class="row"><span>Subtotal</span><span data-f="5">12,480.00</span></div>
+                <div class="row"><span>IGV 18 %</span><span data-f="6">2,246.40</span></div>
+                <div class="row"><b>Total</b><b data-f="7">PEN 14,726.40</b></div>
+              </div>
+            </div>
+          </div>
+          <div class="fields">
+            <table>
+              <thead><tr><th scope="col">Campo</th><th scope="col">Valor</th><th scope="col">Confianza</th></tr></thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="demo-foot">
+          <div class="threshold">
+            <label for="th">Umbral de confianza <output id="th-out" for="th">0.90</output></label>
+            <input type="range" id="th" min="0.60" max="0.99" step="0.01" value="0.90">
+          </div>
+          <div class="route" id="route" aria-live="polite"></div>
+        </div>
+        <figcaption class="demo-note">Demo con datos de ejemplo. Mueve el umbral para ver qué se contabiliza solo y qué revisa una persona.</figcaption>
+      </figure>
     </div>
-
-    <figure class="flow" aria-label="Ilustración de un flujo de integración en SAP Cloud Integration" style="margin:0">
-      <div class="flow-head"><span>iFlow · Pedido_S4_a_Commerce</span><span class="ok">● Started</span></div>
-      <svg viewBox="0 0 420 250" role="img" aria-label="Emisor S/4HANA, paso Groovy, router y dos receptores: API REST y SFTP">
-        <path id="p1" class="edge" d="M74 125 H136"/>
-        <path id="p2" class="edge" d="M196 125 H244"/>
-        <path id="p3a" class="edge" d="M292 125 C312 125 312 62 330 62"/>
-        <path id="p3b" class="edge" d="M292 125 C312 125 312 188 330 188"/>
-        <g>
-          <rect class="node" x="8" y="98" width="66" height="54" rx="8"/>
-          <text x="41" y="122" text-anchor="middle">S/4HANA</text>
-          <text class="lbl" x="41" y="138" text-anchor="middle">IDoc</text>
-        </g>
-        <g>
-          <rect class="node hot" id="n-groovy" x="136" y="103" width="60" height="44" rx="8"/>
-          <text x="166" y="122" text-anchor="middle">Groovy</text>
-          <text class="lbl" x="166" y="137" text-anchor="middle">mapping</text>
-        </g>
-        <g>
-          <path class="node" id="n-router" d="M268 101 L292 125 L268 149 L244 125 Z"/>
-          <text class="lbl" x="268" y="168" text-anchor="middle">Router</text>
-        </g>
-        <g>
-          <rect class="node" x="330" y="38" width="84" height="48" rx="8"/>
-          <text x="372" y="59" text-anchor="middle">Commerce</text>
-          <text class="lbl" x="372" y="74" text-anchor="middle">OData · OAuth2</text>
-        </g>
-        <g>
-          <rect class="node" x="330" y="164" width="84" height="48" rx="8"/>
-          <text x="372" y="185" text-anchor="middle">Legacy</text>
-          <text class="lbl" x="372" y="200" text-anchor="middle">SFTP · X.509</text>
-        </g>
-        <circle class="pkt" id="pkt" r="5" cx="74" cy="125"/>
-      </svg>
-      <figcaption class="flow-log" id="log">MPL <b>Completed</b> · 3 pasos · Groovy · Router · OData</figcaption>
-    </figure>
-  </header>
-
-  <div class="facts">
-    <div><b>9+</b><span>años en SAP</span></div>
-    <div><b>4</b><span>certificaciones SAP</span></div>
-    <div><b>11</b><span>empresas y clientes</span></div>
-    <div><b>6</b><span>países</span></div>
   </div>
 
-  <section id="servicios">
-    <div class="sec-head">
-      <h2>Lo que hago</h2>
-      <p>Desde el diseño de la arquitectura de comunicación hasta el monitoreo de cada mensaje en producción.</p>
+  <section id="proceso">
+    <div class="wrap">
+      <h2 class="h2">Cómo llevo un caso de IA a producción.</h2>
+      <p class="intro">El modelo es una parte. Lo que decide si funciona es cómo se conecta al proceso, quién revisa las excepciones y cómo se opera.</p>
+      <ol class="steps">
+        <li><h3>Caso de uso</h3><p>Un proceso con volumen y reglas claras: facturas, órdenes, solicitudes.</p></li>
+        <li><h3>Esquema y umbrales</h3><p>Campos a extraer, esquema por tipo de documento y umbral de confianza por campo.</p></li>
+        <li><h3>Integración</h3><p>Entrada y salida conectadas con Cloud Integration, SAP CAP y eventos.</p></li>
+        <li><h3>Revisión humana</h3><p>Lo que no supera el umbral llega a una persona con el documento a la vista.</p></li>
+        <li><h3>Operación</h3><p>Monitoreo, seguridad con IAS y roles, y ajuste del esquema con casos reales.</p></li>
+      </ol>
     </div>
-    <div class="what">
-      <article>
-        <span class="eyebrow">Plataforma BTP</span>
-        <h3>Arquitectura y seguridad</h3>
-        <p>Diseño de arquitectura y administración de subcuentas, roles y suscripciones. Federación de identidades y Single Sign-On con SAP Cloud Identity Services.</p>
-        <div class="chips"><span>IAS</span><span>SSO</span><span>Federación</span><span>Cloud Foundry</span><span>Cloud Connector</span></div>
-      </article>
-      <article>
-        <span class="eyebrow">Cloud Integration</span>
-        <h3>Integraciones SAP y no SAP</h3>
-        <p>iFlows custom y paquetes estándar, Integration Advisor (MIG/MAG), diagramas de secuencia, seguridad y troubleshooting.</p>
-        <div class="chips"><span>Groovy</span><span>XSLT</span><span>IDoc</span><span>JMS</span><span>JDBC</span><span>SFTP</span><span>X.509</span><span>OAuth 2.0</span></div>
-      </article>
-      <article>
-        <span class="eyebrow">API Management</span>
-        <h3>APIs gobernadas</h3>
-        <p>Exposición de servicios SAP como APIs, configuración de API Providers y políticas de seguridad y tráfico.</p>
-        <div class="chips"><span>API Provider</span><span>Policies</span><span>OData v2/v4</span><span>REST</span><span>SOAP</span></div>
-      </article>
-      <article>
-        <span class="eyebrow">Desarrollo BTP</span>
-        <h3>Servicios y apps</h3>
-        <p>Servicios OData y microservicios con SAP CAP sobre HANA Cloud, apps custom en BTP, aplicaciones Fiori y UI5, e IA con SAP Document AI y Joule.</p>
-        <div class="chips"><span>SAP CAP</span><span>HANA Cloud</span><span>Fiori Elements</span><span>UI5</span><span>Document AI</span><span>Joule</span></div>
-      </article>
+  </section>
+
+  <section id="capacidades">
+    <div class="wrap">
+      <h2 class="h2">Lo que implemento en SAP BTP.</h2>
+      <div class="bento">
+        <article class="cell big">
+          <h3>IA documental con SAP Document AI</h3>
+          <p>Facturas que llegan por correo o se cargan en una app, extraídas, validadas por umbral y registradas en SAP S/4HANA.</p>
+<pre>{
+  <span class="k">"name"</span>: "grossAmount",
+  <span class="k">"value"</span>: "14726.40",
+  <span class="k">"confidence"</span>: 0.97
+},
+{
+  <span class="k">"name"</span>: "purchaseOrderNumber",
+  <span class="k">"value"</span>: "4500018236",
+  <span class="k">"confidence"</span>: <span class="w">0.71</span>   <span class="w">// a revisión</span>
+}</pre>
+          <div class="chips"><span>Document AI</span><span>Cloud Integration</span><span>S/4HANA</span></div>
+        </article>
+        <article class="cell">
+          <h3>Asistentes con Joule</h3>
+          <p>Activación y configuración de SAP Joule sobre el landscape SAP, con identidad federada.</p>
+          <div class="chips"><span>Joule</span><span>IAS</span></div>
+        </article>
+        <article class="cell">
+          <h3>Orquestación</h3>
+          <p>Servicios SAP CAP que coordinan extracción, reglas y flujos en n8n.</p>
+          <div class="chips"><span>SAP CAP</span><span>n8n</span></div>
+        </article>
+        <article class="cell">
+          <h3>Eventos</h3>
+          <p>Procesos que reaccionan a eventos con Event Mesh, Advanced Event Mesh, Kafka y Pub/Sub.</p>
+          <div class="chips"><span>Event Mesh</span><span>Kafka</span></div>
+        </article>
+        <article class="cell">
+          <h3>Integración</h3>
+          <p>Cloud Integration, API Management y migración de SAP PO a Cloud Integration.</p>
+          <div class="chips"><span>Integration Suite</span><span>APIM</span></div>
+        </article>
+        <article class="cell">
+          <h3>Plataforma segura</h3>
+          <p>Subaccounts, role collections, Cloud Connector, IAS y SSO para Concur, SuccessFactors y Ariba.</p>
+          <div class="chips"><span>BTP</span><span>IAS</span><span>SSO</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="experiencia">
+    <div class="wrap">
+      <h2 class="h2">Experiencia</h2>
+      <p class="intro">Más de 9 años en SAP, en equipos de siete países. Abre cada rol para ver el detalle.</p>
+
+      <div class="xp">
+        <details open>
+          <summary><span class="when">01/2026 – Actualidad</span><div><h3>Arquitecto SAP BTP</h3><span class="co">YPF Luz · Argentina</span></div><span class="sum">Arquitectura de BTP, identidad, IA con Document AI y Joule.</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body">
+            <ul>
+              <li><b>Automatización de facturas de proveedor:</b> Cloud Integration lee el buzón de correo, SAP Document AI extrae los datos y la factura se registra en SAP S/4HANA.</li>
+              <li>Arquitectura de soluciones y administración de BTP: subaccounts, entitlements, suscripciones, role collections y Destinations.</li>
+              <li>SAP Cloud Identity Services (IAS): federación, Single Sign-On y roles; SSO para SAP Concur, SuccessFactors y Ariba.</li>
+              <li>Activación y configuración de SAP Joule, Cloud Connector, aplicaciones custom e iFlows estándar.</li>
+            </ul>
+            <div class="chips"><span>Document AI</span><span>Joule</span><span>Cloud Integration</span><span>IAS</span></div>
+          </div>
+        </details>
+        <details>
+          <summary><span class="when">01/2026 – 07/2026</span><div><h3>Consultor SAP BTP · Integración y Desarrollo</h3><span class="co">Mercado Libre · Argentina</span></div><span class="sum">Carga contable inteligente con CAP, n8n y Document AI; Event Mesh.</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body">
+            <ul>
+              <li><b>Carga contable inteligente:</b> aplicación custom para subir facturas en PDF con su imputación contable.</li>
+              <li>ABAP dispara un iFlow de Cloud Integration que invoca un servicio SAP CAP; CAP coordina n8n y la extracción con SAP Document AI.</li>
+              <li>Integración orientada a eventos con SAP Event Mesh y Advanced Event Mesh.</li>
+              <li>Servicios SAP CAP, aplicaciones SAPUI5 e IA con Document AI y Joule.</li>
+            </ul>
+            <div class="chips"><span>SAP CAP</span><span>n8n</span><span>Document AI</span><span>Event Mesh</span></div>
+          </div>
+        </details>
+        <details>
+          <summary><span class="when">03/2024 – 04/2026</span><div><h3>Consultor SAP BTP · Integration Suite, CAP y UI5</h3><span class="co">Latam Airlines · Brasil</span></div><span class="sum">Integraciones de la operación aérea y arquitectura orientada a eventos.</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body">
+            <ul>
+              <li><b>Operación aérea</b> en Cloud Integration: gestión de vuelos, tracking, pasarela de pagos y viáticos de tripulación.</li>
+              <li>Eventos con Google Cloud Pub/Sub desde SAP CAP y Cloud Integration, e integración con Apache Kafka.</li>
+              <li>Cloud Integration con Google BigQuery; APIs en SAP API Management; IDoc y SFTP con Integration Advisor.</li>
+              <li>Servicios OData v2/v4 con SAP CAP sobre HANA Cloud y aplicaciones Fiori.</li>
+            </ul>
+            <div class="chips"><span>Cloud Integration</span><span>Kafka</span><span>Pub/Sub</span><span>BigQuery</span></div>
+          </div>
+        </details>
+        <details>
+          <summary><span class="when">06/2025 – 12/2025</span><div><h3>Consultor SAP Integration Suite</h3><span class="co">Neoris</span></div><span class="sum">iFlows con Groovy avanzado, Event Mesh y seguridad X.509 / OAuth 2.0.</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body">
+            <ul>
+              <li>iFlows con Groovy avanzado y patrones Poll Enrich, Content Enricher, Router y Multicast.</li>
+              <li>Adaptadores SOAP, REST, SFTP, Mail, SuccessFactors, RFC, JDBC e IDoc.</li>
+              <li>Integración orientada a eventos con SAP Event Mesh y Advanced Event Mesh; X.509 y OAuth 2.0.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary><span class="when">03/2023 – 03/2025</span><div><h3>Consultor SAP Integration Suite</h3><span class="co">Hiberus · España</span></div><span class="sum">S/4HANA, SAP CAR, Commerce Cloud y Marketing Cloud; Event Mesh.</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body">
+            <ul>
+              <li>Interfaces entre SAP S/4HANA, SAP CAR, Commerce Cloud, Marketing Cloud y sistemas no SAP.</li>
+              <li>Paquetes estándar, IDocs, arquitectura de comunicación y diagramas de secuencia.</li>
+              <li>Integración orientada a eventos con SAP Event Mesh y Advanced Event Mesh.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary><span class="when">11/2022 – 11/2024</span><div><h3>Consultor SAP BTP · Integration Suite y CAP</h3><span class="co">Stratesys · España</span></div><span class="sum">Microservicios CAP, SAPUI5 y CI/CD con Jenkins y SonarQube.</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body">
+            <ul>
+              <li>Servicios OData v2/v4 y microservicios con SAP CAP; aplicaciones SAPUI5.</li>
+              <li>Integraciones en Cloud Integration, APIs en API Management y CI/CD con Jenkins y SonarQube.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary><span class="when">10/2022 – 11/2024</span><div><h3>Consultor SAP Cloud Integration</h3><span class="co">EY · México</span></div><span class="sum">Interfaces S/4HANA con terceros, cifrado y Secure Material.</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body">
+            <ul>
+              <li>Interfaces entre SAP S/4HANA, sistemas no SAP y terceros; IDocs.</li>
+              <li>Groovy, XSLT, Message Mapping, cifrado y Secure Material; Cloud Connector y administración de BTP.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary><span class="when">04/2024 – 10/2024</span><div><h3>Arquitecto SAP Integration Suite</h3><span class="co">CMI · Guatemala</span></div><span class="sum">Administración de Integration Suite y migración de SAP PO a Cloud Integration.</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body">
+            <ul>
+              <li>Administración, gestión y configuración de SAP BTP y SAP Integration Suite.</li>
+              <li>Migration assessment del landscape SAP PO y migración completa a Cloud Integration.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary><span class="when">09/2022 – 03/2023</span><div><h3>Consultor SAP Integration Suite</h3><span class="co">SNP · Chile</span></div><span class="sum">Interfaces S/4HANA con Integration Advisor, APIs y SAPUI5.</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body"><ul><li>Interfaces S/4HANA con sistemas no SAP, paquetes estándar, API Management y apps SAPUI5.</li></ul></div>
+        </details>
+        <details>
+          <summary><span class="when">12/2021 – 12/2022</span><div><h3>Arquitecto Consultor SAP BTP</h3><span class="co">SAASA · Perú</span></div><span class="sum">Arquitectura de soluciones, CAP y SAPUI5 en tiempo real.</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body"><ul><li>Arquitectura a partir de requerimientos, servicios OData con SAP CAP y apps SAPUI5 con WebSocket en Cloud Foundry.</li></ul></div>
+        </details>
+        <details>
+          <summary><span class="when">01/2019 – 12/2021</span><div><h3>Consultor SAP BTP · CPI y PO</h3><span class="co">NTT DATA · Perú</span></div><span class="sum">Integraciones en SAP CPI y SAP PO, middleware Java y workflows.</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body"><ul><li>Integraciones en SAP CPI y SAP PO, middleware en Java, workflows en BTP y aplicaciones SAPUI5.</li></ul></div>
+        </details>
+        <details>
+          <summary><span class="when">01/2017 – 08/2018</span><div><h3>Consultor SAPUI5 · Full Stack Developer</h3><span class="co">Intelecta · Perú</span></div><span class="sum">Apps SAPUI5, servicios OData y plataforma de cambio de divisas.</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="body"><ul><li>Aplicaciones SAPUI5, servicios OData, integraciones de terceros y una plataforma de divisas sobre AWS.</li></ul></div>
+        </details>
+      </div>
     </div>
   </section>
 
   <section id="certificaciones">
-    <div class="sec-head">
-      <h2>Certificaciones</h2>
-      <p>Las credenciales vigentes se pueden verificar en Credly.</p>
-    </div>
-    <div class="certs">
-      <div class="cert">
-        <div class="seal">2026</div>
-        <h3>SAP Certified – Integration Developer</h3>
-        <div class="meta">Emitida el 15 jul 2026 · vigente hasta 16 jul 2027</div>
-        <a href="https://www.credly.com/badges/9c239023-1620-4a00-8b91-6330ddd18ea8" target="_blank" rel="noopener">Verificar en Credly ↗</a>
-      </div>
-      <div class="cert">
-        <div class="seal">2026</div>
-        <h3>SAP Certified – Solution Architect – SAP BTP</h3>
-        <div class="meta"><code>P_BTPA_2511</code> · emitida el 16 ene 2026 · vigente hasta 17 ene 2027</div>
-        <a href="https://www.credly.com/badges/c18416e7-dab7-4e17-bd8a-64e21876a033" target="_blank" rel="noopener">Verificar en Credly ↗</a>
-      </div>
-      <div class="cert old">
-        <div class="seal">2020</div>
-        <h3>SAP Cloud Platform Integration</h3>
-        <div class="meta"><code>C_CPI_13</code> · 2020</div>
-      </div>
-      <div class="cert old">
-        <div class="seal">2020</div>
-        <h3>SAP Cloud Platform</h3>
-        <div class="meta"><code>C_CP_11</code> · 2020</div>
+    <div class="wrap">
+      <h2 class="h2">Certificaciones SAP</h2>
+      <div class="certs">
+        <div class="cert"><small>Vigente</small><h3>SAP Certified – Solution Architect – SAP BTP</h3><span class="meta"><code>P_BTPA_2511</code> · ene 2026 a ene 2027</span><a href="https://www.credly.com/badges/c18416e7-dab7-4e17-bd8a-64e21876a033" target="_blank" rel="noopener">Verificar en Credly</a></div>
+        <div class="cert"><small>Vigente</small><h3>SAP Certified – Integration Developer</h3><span class="meta">jul 2026 a jul 2027</span><a href="https://www.credly.com/badges/9c239023-1620-4a00-8b91-6330ddd18ea8" target="_blank" rel="noopener">Verificar en Credly</a></div>
+        <div class="cert old"><small>2020</small><h3>SAP Cloud Platform Integration</h3><span class="meta"><code>C_CPI_13</code></span></div>
+        <div class="cert old"><small>2020</small><h3>SAP Cloud Platform</h3><span class="meta"><code>C_CP_11</code></span></div>
       </div>
     </div>
-  </section>
-
-  <section id="trayectoria">
-    <div class="sec-head">
-      <h2>Trayectoria</h2>
-      <p>De desarrollador full stack a arquitecto SAP BTP.</p>
-    </div>
-    <ol class="tl" reversed>
-      <li><span class="when">05/2026 – Actualidad</span><div><h3>Arquitecto y Consultor SAP BTP</h3><span class="co">YPF Luz · Argentina</span></div><p>Arquitectura y administración de SAP BTP, federación de identidades y SSO con IAS, IA con SAP Document AI y Joule, apps custom e iFlows estándar en Cloud Integration.</p></li>
-      <li><span class="when">01/2026 – 07/2026</span><div><h3>Consultor SAP BTP · Integración y Desarrollo</h3><span class="co">Mercado Libre · Argentina</span></div><p>Integraciones en SAP Cloud Integration, servicios con SAP CAP, aplicaciones SAP UI5 e IA con SAP Document AI y Joule.</p></li>
-      <li><span class="when">03/2024 – 04/2026</span><div><h3>Consultor SAP BTP</h3><span class="co">Latam Airlines · Brasil</span></div><p>Interfaces SAP y no SAP en Cloud Integration, APIs en API Management, servicios OData con CAP sobre HANA Cloud y apps Fiori.</p></li>
-      <li><span class="when">06/2025 – 12/2025</span><div><h3>Consultor SAP BTP · IS</h3><span class="co">Neoris</span></div><p>iFlows con Groovy avanzado y adaptadores SOAP, REST, SFTP, SuccessFactors, RFC, JDBC e IDoc; seguridad X.509 y OAuth 2.0.</p></li>
-      <li><span class="when">03/2023 – 03/2025</span><div><h3>Consultor SAP BTP · IS</h3><span class="co">Hiberus · España</span></div><p>Integraciones de S/4HANA, CAR, Commerce Cloud y Marketing Cloud; paquetes estándar, IDocs y Cloud Connector.</p></li>
-      <li><span class="when">11/2022 – 11/2024</span><div><h3>Consultor SAP BTP · IS · CAP</h3><span class="co">Stratesys · España</span></div><p>Apps UI5, servicios OData y microservicios con CAP, integraciones en CPI y CI/CD con Jenkins y SonarQube.</p></li>
-      <li><span class="when">10/2022 – 11/2024</span><div><h3>Consultor SAP BTP · IS</h3><span class="co">EY · México</span></div><p>Interfaces entre S/4HANA y sistemas de terceros, arquitectura de comunicación y depuración de integraciones.</p></li>
-      <li><span class="when">09/2022 – 03/2023</span><div><h3>Consultor SAP BTP · IS</h3><span class="co">SNP · Chile</span></div><p>Interfaces S/4HANA con Integration Advisor, APIs en API Management y apps UI5.</p></li>
-      <li><span class="when">12/2021 – 12/2022</span><div><h3>Arquitecto Consultor SAP BTP</h3><span class="co">SAASA · Perú</span></div><p>Arquitectura de soluciones, modelado de datos, servicios CAP y apps UI5 en tiempo real con WebSocket.</p></li>
-      <li><span class="when">01/2019 – 12/2021</span><div><h3>Consultor SAP BTP · CPI · PO</h3><span class="co">NTT DATA · Perú</span></div><p>Integraciones en CPI y PO, middleware en Java, workflows BTP y soporte de interfaces.</p></li>
-      <li><span class="when">01/2017 – 08/2018</span><div><h3>Consultor SAP BTP · UI5</h3><span class="co">Intelecta · Perú</span></div><p>Apps SAP UI5, servicios OData e integraciones de terceros con SAP.</p></li>
-      <li><span class="when">01/2017 – 12/2017</span><div><h3>Full Stack Developer</h3><span class="co">Intelecta · Perú</span></div><p>Startup de cambio de divisas con JavaScript, PHP y AngularJS sobre AWS EC2.</p></li>
-    </ol>
   </section>
 
   <section id="contacto">
-    <div class="contact">
+    <div class="wrap contact">
       <div>
-        <h2>¿Tienes un proyecto en SAP BTP?</h2>
-        <p>Integraciones, APIs o una arquitectura que revisar. Escríbeme y te respondo con los siguientes pasos.</p>
+        <h2 class="h2">¿Tienes un proceso listo para IA?</h2>
+        <p>Facturas, órdenes o solicitudes con volumen. Escríbeme y vemos cómo llevarlo a producción en SAP BTP.</p>
       </div>
-      <div class="lines">
-        <div class="line"><div><span class="k">Email</span><span class="v" id="em">jahirdiaz2595@gmail.com</span></div><button type="button" data-copy="em">Copiar</button></div>
-        <div class="line"><div><span class="k">Teléfono / WhatsApp</span><span class="v" id="ph">+51 940 610 507</span></div><button type="button" data-copy="ph">Copiar</button></div>
-        <div class="line"><div><span class="k">LinkedIn</span><span class="v" id="li">linkedin.com/in/jahirdiazpinedo</span></div><a class="lk" href="https://www.linkedin.com/in/jahirdiazpinedo" target="_blank" rel="noopener">Abrir ↗</a></div>
+      <div class="contact-lines">
+        <div class="line"><div><span class="k">Email</span><span class="v" id="em">jahirdiaz2595@gmail.com</span></div><button class="btn" type="button" data-copy="em">Copiar</button></div>
+        <div class="line"><div><span class="k">Teléfono / WhatsApp</span><span class="v" id="ph">+51 940 610 507</span></div><button class="btn" type="button" data-copy="ph">Copiar</button></div>
+        <div class="line"><div><span class="k">LinkedIn</span><span class="v">linkedin.com/in/jahirdiazpinedo</span></div><a class="btn" href="https://www.linkedin.com/in/jahirdiazpinedo" target="_blank" rel="noopener">Abrir</a></div>
       </div>
     </div>
   </section>
+</main>
 
-  <footer><span>© 2026 Jahir Diaz</span><span class="mono">SAP BTP · Integration Suite · CAP</span></footer>
-</div>
+<footer class="wrap"><span>© 2026 Jahir Díaz</span><span>IA aplicada en SAP BTP</span></footer>
 
 <script>
-document.querySelectorAll('[data-copy]').forEach(b=>{
-  b.addEventListener('click',()=>{
-    const el=document.getElementById(b.dataset.copy);const t=el.textContent.trim();
-    const done=()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar',1600)};
-    const sel=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Seleccionado'};
-    try{navigator.clipboard.writeText(t).then(done,sel)}catch(e){sel()}
-  });
-});
-(function(){
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  const pkt=document.getElementById('pkt'),log=document.getElementById('log');
-  const routes=[['p1','p2','p3a','Commerce','OData'],['p1','p2','p3b','Legacy','SFTP']];
-  let k=0;
-  function run(){
-    const r=routes[k++%2];const paths=r.slice(0,3).map(id=>document.getElementById(id));
-    const lens=paths.map(p=>p.getTotalLength());const total=lens.reduce((a,b)=>a+b,0);
-    const dur=2600;let t0=null;
-    log.innerHTML='MPL <b>Processing</b> · Groovy → Router → '+r[3];
-    function step(ts){
-      if(!t0)t0=ts;let d=Math.min((ts-t0)/dur,1)*total;let i=0;
-      while(i<paths.length-1&&d>lens[i]){d-=lens[i];i++}
-      const pt=paths[i].getPointAtLength(Math.min(d,lens[i]));
-      pkt.setAttribute('cx',pt.x);pkt.setAttribute('cy',pt.y);
-      if(ts-t0<dur)requestAnimationFrame(step);
-      else{log.innerHTML='MPL <b>Completed</b> · '+r[3]+' · '+r[4];setTimeout(run,1500)}
-    }
-    requestAnimationFrame(step);
+(() => {
+  // Datos de ejemplo de una extracción (no corresponden a ningún cliente)
+  const FIELDS = [
+    ['Proveedor', 'Ferretería Andina S.A.C.', 0.99],
+    ['RUC', '20512345678', 0.97],
+    ['N.º de factura', 'F001-004817', 0.98],
+    ['Fecha de emisión', '14/09/2026', 0.96],
+    ['Orden de compra', '4500018236', 0.71],
+    ['Subtotal', '12,480.00', 0.95],
+    ['IGV 18 %', '2,246.40', 0.88],
+    ['Total', 'PEN 14,726.40', 0.97],
+  ];
+  const rows = document.getElementById('rows');
+  const th = document.getElementById('th');
+  const out = document.getElementById('th-out');
+  const route = document.getElementById('route');
+  const status = document.getElementById('status');
+  const demo = document.getElementById('demo');
+  const docF = [...document.querySelectorAll('.doc [data-f]')];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  rows.innerHTML = FIELDS.map(([k, v, c]) =>
+    `<tr><td>${k}</td><td class="v">${v}</td><td><span class="conf"><i style="--c:${c}"></i>${c.toFixed(2)}</span></td></tr>`).join('');
+  const trs = [...rows.children];
+
+  const ICON_OK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+  const ICON_REVIEW = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>';
+
+  function update() {
+    const t = Number(th.value);
+    out.textContent = t.toFixed(2);
+    let low = 0;
+    FIELDS.forEach(([, , c], i) => {
+      const isLow = c < t;
+      low += isLow;
+      trs[i].classList.toggle('low', isLow);
+      docF[i].classList.toggle('low', isLow);
+      docF[i].classList.toggle('hit', !isLow);
+    });
+    route.classList.toggle('review', low > 0);
+    route.innerHTML = low
+      ? `${ICON_REVIEW}<span><b>Revisión humana</b>${low} ${low === 1 ? 'campo queda' : 'campos quedan'} bajo ${t.toFixed(2)}. Se crea una tarea con el documento.</span>`
+      : `${ICON_OK}<span><b>Contabilización automática</b>Todos los campos superan ${t.toFixed(2)}. La factura va directo a S/4HANA.</span>`;
   }
-  setTimeout(run,600);
+
+  function extract() {
+    if (reduce) { update(); return; }
+    status.textContent = 'Extrayendo';
+    status.classList.add('busy');
+    trs.forEach(r => r.classList.add('pending'));
+    docF.forEach(f => f.classList.remove('hit', 'low'));
+    demo.classList.remove('scanning'); void demo.offsetWidth; demo.classList.add('scanning');
+    trs.forEach((r, i) => setTimeout(() => r.classList.remove('pending'), 300 + i * 140));
+    setTimeout(() => { status.textContent = 'Extraído'; status.classList.remove('busy'); update(); }, 300 + FIELDS.length * 140);
+  }
+
+  th.addEventListener('input', update);
+  document.getElementById('rerun').addEventListener('click', extract);
+  update();
+  setTimeout(extract, 500);
+
+  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', () => {
+    const src = document.getElementById(b.dataset.copy);
+    const done = txt => { b.textContent = txt; setTimeout(() => b.textContent = 'Copiar', 1600); };
+    const select = () => { getSelection().selectAllChildren(src); done('Seleccionado'); };
+    try { navigator.clipboard.writeText(src.textContent.trim()).then(() => done('Copiado'), select); } catch { select(); }
+  }));
 })();
 </script>
-
 </body>
 </html>

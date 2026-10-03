@@ -3,20 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Jahir Díaz, arquitecto SAP BTP. Implemento IA en procesos SAP con SAP Document AI, Joule, SAP CAP, Integration Suite y Event Mesh.">
-<meta property="og:title" content="Jahir Díaz · IA aplicada en SAP BTP">
-<meta property="og:description" content="Implemento IA que llega a producción en SAP: Document AI, Joule, CAP e Integration Suite.">
+<meta name="description" content="Jahir Díaz, arquitecto SAP BTP con más de 9 años en Integration Suite, SAP CAP, Event Mesh e IAS. Ahora llevando esa base a la IA con SAP Document AI y Joule.">
+<meta property="og:title" content="Jahir Díaz · Arquitecto SAP BTP">
+<meta property="og:description" content="SAP BTP de punta a punta. Ahora con IA.">
 <meta property="og:image" content="https://jahir25.github.io/img/jahir-diaz.png">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#F5F6F8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0B0E14" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="img/favicon.png">
-<title>Jahir Díaz · IA aplicada en SAP BTP</title>
+<title>Jahir Díaz · Arquitecto SAP BTP</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: titular a todo el ancho, debajo copy + demo de extracción en vivo; luego proceso, capacidades (bento), experiencia, certificaciones y contacto.
+/* Layout: titular a todo el ancho; debajo copy + constelación animada de servicios SAP BTP (canvas).
+   Luego: primeros pasos en IA (demo), proceso, base BTP (bento), experiencia, certificaciones y contacto.
    Radios: botones 10px, tarjetas 14px, chips 6px. */
 :root {
   --bg: #F5F6F8;
@@ -61,6 +62,7 @@ a { color: inherit; text-underline-offset: .22em; text-decoration-thickness: 1px
 h1, h2, h3 { text-wrap: balance; margin: 0; }
 p { margin: 0; }
 .wrap { max-width: 1200px; margin: 0 auto; padding-inline: var(--gutter); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* Nav */
 .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
@@ -82,10 +84,10 @@ p { margin: 0; }
 .nav .btn { padding: 10px 16px; font-size: .9rem; }
 
 /* Hero */
-.hero { padding-block: clamp(36px, 6vw, 72px) 0; }
+.hero { padding-block: clamp(36px, 6vw, 64px) 0; }
 .hero h1 { font-size: clamp(2.3rem, 5.4vw, 4.6rem); font-weight: 700; font-stretch: 108%; line-height: 1.02; letter-spacing: -.03em; max-width: 24ch; }
 .hero h1 em { font-style: normal; color: var(--accent); }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 56px); margin-top: clamp(28px, 4vw, 44px); align-items: start; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 48px); margin-top: clamp(24px, 3vw, 36px); align-items: center; }
 .hero-copy { display: grid; gap: 26px; }
 .lede { font-size: 1.15rem; color: var(--ink-2); max-width: 36ch; }
 .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
@@ -94,39 +96,55 @@ p { margin: 0; }
 .who b { display: block; font-stretch: 108%; }
 .who span { display: block; font-size: .9rem; color: var(--ink-2); line-height: 1.4; }
 
+/* Orbit */
+.orbit { position: relative; margin: 0; min-width: 0; }
+.orbit canvas { display: block; width: 100%; height: 500px; touch-action: pan-y; }
+.tip { position: absolute; pointer-events: none; min-width: 180px; max-width: 240px; padding: 10px 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); font-size: .85rem; line-height: 1.4; opacity: 0; transform: translateY(4px); transition: opacity 140ms ease, transform 140ms var(--ease); z-index: 2; }
+.tip.on { opacity: 1; transform: none; }
+.tip b { display: block; font-size: .95rem; }
+.tip span { display: block; color: var(--ink-2); }
+.tip i { font: 500 .72rem var(--mono); font-style: normal; color: var(--accent-ink); display: block; margin-top: 4px; }
+.tip i.exp { color: var(--warn); }
+.orbit-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-top: 8px; font-size: .85rem; color: var(--ink-2); }
+.orbit-legend button { appearance: none; font: 500 .82rem var(--font); color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; cursor: pointer; transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease; }
+.orbit-legend button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-ink); }
+@media (hover: hover) and (pointer: fine) { .orbit-legend button:hover { color: var(--ink); border-color: var(--ink-2); } }
+.orbit-legend .status { margin-left: auto; display: inline-flex; gap: 14px; }
+.orbit-legend .status span { display: inline-flex; align-items: center; gap: 6px; }
+.orbit-legend .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+.orbit-legend .dot.hollow { background: transparent; border: 1.5px dashed var(--accent); }
+
 /* Demo */
-.demo { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; min-width: 0; margin: 0; }
+.demo { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; min-width: 0; margin: 44px 0 0; }
 .demo-head { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
 .demo-head .file { font: 500 .85rem var(--mono); color: var(--ink); }
 .pill { font: 500 .75rem var(--mono); padding: 3px 9px; border-radius: 6px; background: var(--accent-soft); color: var(--accent-ink); }
 .pill.busy { color: var(--warn); background: color-mix(in srgb, var(--warn) 14%, transparent); }
 .demo-head .btn { margin-left: auto; padding: 8px 12px; font-size: .85rem; }
 .demo-body { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
-.doc { position: relative; padding: 18px; border-right: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 55%, var(--surface)); overflow: hidden; font-size: .78rem; line-height: 1.45; color: var(--ink-2); }
-.doc .paper { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px; display: grid; gap: 10px; }
+.doc { position: relative; padding: 18px; border-right: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 55%, var(--surface)); overflow: hidden; font-size: .8rem; line-height: 1.45; color: var(--ink-2); }
+.doc .paper { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 16px; display: grid; gap: 10px; }
 .doc .row { display: flex; justify-content: space-between; gap: 10px; }
 .doc b { color: var(--ink); font-weight: 600; }
-.doc .lines { border-top: 1px dashed var(--line); padding-top: 8px; display: grid; gap: 4px; }
-.doc [data-f] { border-radius: 3px; transition: background-color 200ms ease, box-shadow 200ms ease, color 200ms ease; font-family: var(--mono); font-size: .74rem; }
+.doc .items { border-top: 1px dashed var(--line); padding-top: 8px; display: grid; gap: 4px; }
+.doc [data-f] { border-radius: 3px; transition: background-color 200ms ease, box-shadow 200ms ease, color 200ms ease; font-family: var(--mono); font-size: .76rem; }
 .doc [data-f].hit { background: var(--accent-soft); box-shadow: 0 0 0 2px var(--accent-soft); color: var(--accent-ink); }
 .doc [data-f].low { background: color-mix(in srgb, var(--warn) 16%, transparent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--warn) 16%, transparent); color: var(--warn); }
 .scan { position: absolute; left: 0; right: 0; top: 0; height: 56px; pointer-events: none; opacity: 0; background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--accent) 22%, transparent) 70%, var(--accent) 71%, transparent 73%); }
 .scanning .scan { animation: scan 1500ms var(--ease) both; }
 @keyframes scan { from { opacity: 1; transform: translateY(-56px); } 90% { opacity: 1; } to { opacity: 0; transform: translateY(420px); } }
-
 .fields { padding: 8px 0; min-width: 0; }
-.fields table { width: 100%; border-collapse: collapse; font-size: .86rem; }
+.fields table { width: 100%; border-collapse: collapse; font-size: .88rem; }
 .fields th { text-align: left; font: 500 .7rem var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--ink-2); padding: 6px 16px; }
 .fields td { padding: 7px 16px; border-top: 1px solid var(--line); vertical-align: middle; }
 .fields td:first-child { color: var(--ink-2); }
-.fields td.v { font: 500 .8rem var(--mono); color: var(--ink); overflow-wrap: anywhere; }
-.conf { display: flex; align-items: center; gap: 8px; font: 500 .78rem var(--mono); font-variant-numeric: tabular-nums; }
+.fields td.v { font: 500 .82rem var(--mono); color: var(--ink); overflow-wrap: anywhere; }
+.conf { display: flex; align-items: center; gap: 8px; font: 500 .8rem var(--mono); font-variant-numeric: tabular-nums; }
 .conf i { display: block; height: 4px; border-radius: 2px; background: var(--ok); width: calc(var(--c) * 44px); transition: background-color 200ms ease; }
 tr.low .conf { color: var(--warn); }
 tr.low .conf i { background: var(--warn); }
 tr td.v, tr .conf { transition: opacity 220ms ease; }
 tr.pending td.v, tr.pending .conf { opacity: .2; }
-
 .demo-foot { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 18px; align-items: center; padding: 16px 18px; border-top: 1px solid var(--line); }
 .threshold label { display: flex; justify-content: space-between; font-weight: 600; font-size: .9rem; margin-bottom: 6px; }
 .threshold output { font: 500 .9rem var(--mono); color: var(--accent-ink); }
@@ -141,8 +159,8 @@ tr.pending td.v, tr.pending .conf { opacity: .2; }
 
 /* Sections */
 section { padding-block: clamp(72px, 10vw, 128px) 0; }
-.h2 { font-size: clamp(1.9rem, 3.6vw, 3rem); font-weight: 700; font-stretch: 108%; line-height: 1.05; letter-spacing: -.025em; max-width: 22ch; }
-.intro { margin-top: 16px; color: var(--ink-2); max-width: 60ch; font-size: 1.1rem; }
+.h2 { font-size: clamp(1.9rem, 3.6vw, 3rem); font-weight: 700; font-stretch: 108%; line-height: 1.05; letter-spacing: -.025em; max-width: 24ch; }
+.intro { margin-top: 16px; color: var(--ink-2); max-width: 62ch; font-size: 1.1rem; }
 
 /* Process */
 .steps { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); counter-reset: s; }
@@ -158,15 +176,18 @@ section { padding-block: clamp(72px, 10vw, 128px) 0; }
 .cell { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 26px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .cell h3 { font-size: 1.25rem; font-stretch: 105%; }
 .cell p { color: var(--ink-2); font-size: .97rem; }
-.cell.big { grid-column: span 2; grid-row: span 2; background: var(--accent-soft); border-color: transparent; }
+.cell.big { grid-column: span 2; grid-row: span 2; }
 .cell.big h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
-.cell.big p { color: var(--ink); max-width: 46ch; font-size: 1.05rem; }
-.cell.big pre { margin: auto 0 0; padding: 16px 18px; border-radius: 10px; background: var(--surface); font: 400 .82rem/1.65 var(--mono); color: var(--ink); overflow-x: auto; }
+.cell.big p { color: var(--ink); max-width: 50ch; font-size: 1.05rem; }
+.cell.big pre { margin: auto 0 0; padding: 16px 18px; border-radius: 10px; background: var(--bg); font: 400 .82rem/1.65 var(--mono); color: var(--ink); overflow-x: auto; }
 .cell.big pre .k { color: var(--accent-ink); }
-.cell.big pre .w { color: var(--warn); }
+.cell.big pre .c { color: var(--ink-2); }
+.cell.ai { background: var(--accent-soft); border-color: transparent; }
+.cell.ai p { color: var(--ink); }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
 .chips span { font: 400 .76rem var(--mono); padding: 3px 9px; border-radius: 6px; background: var(--bg); color: var(--ink-2); }
-.cell.big .chips span { background: var(--surface); }
+.cell.ai .chips span { background: var(--surface); }
+.chips span.exp { border: 1px dashed var(--accent); background: transparent; color: var(--accent-ink); }
 
 /* Experience */
 .xp { margin-top: 44px; border-top: 1px solid var(--line); }
@@ -220,6 +241,7 @@ footer { padding-block: 72px 40px; display: flex; justify-content: space-between
 /* Responsive */
 @media (max-width: 1000px) {
   .hero-grid, .contact { grid-template-columns: minmax(0, 1fr); }
+  .orbit canvas { height: 460px; }
   .steps { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .steps li { padding: 0 0 0 58px; }
   .steps li::before { position: absolute; left: 0; top: 0; }
@@ -236,6 +258,8 @@ footer { padding-block: 72px 40px; display: flex; justify-content: space-between
 @media (max-width: 720px) {
   .nav ul { display: none; }
   .nav .btn { margin-left: auto; }
+  .orbit canvas { height: 400px; }
+  .orbit-legend .status { margin-left: 0; width: 100%; }
   .demo-body, .demo-foot { grid-template-columns: minmax(0, 1fr); }
   .doc { border-right: 0; border-bottom: 1px solid var(--line); }
   .bento, .certs { grid-template-columns: minmax(0, 1fr); }
@@ -250,8 +274,8 @@ footer { padding-block: 72px 40px; display: flex; justify-content: space-between
   <div class="wrap">
     <a class="brand" href="#top"><img src="img/jahir-diaz.png" alt=""><b>Jahir Díaz</b></a>
     <ul>
-      <li><a href="#proceso">Cómo trabajo</a></li>
-      <li><a href="#capacidades">Capacidades</a></li>
+      <li><a href="#ia">IA aplicada</a></li>
+      <li><a href="#base">Base BTP</a></li>
       <li><a href="#experiencia">Experiencia</a></li>
       <li><a href="#certificaciones">Certificaciones</a></li>
     </ul>
@@ -261,19 +285,38 @@ footer { padding-block: 72px 40px; display: flex; justify-content: space-between
 
 <main id="top">
   <div class="wrap hero">
-    <h1>IA que llega a <em>producción</em> en SAP BTP.</h1>
+    <h1>SAP BTP de punta a punta. <em>Ahora con IA.</em></h1>
     <div class="hero-grid">
       <div class="hero-copy">
-        <p class="lede">Implemento SAP Document AI, Joule y automatización sobre SAP BTP, conectadas a tus procesos con Integration Suite y CAP.</p>
+        <p class="lede">9+ años construyendo sobre SAP BTP. Ahora llevo esa base a la IA, empezando por Document AI y Joule.</p>
         <div class="ctas">
           <a class="btn btn-primary" href="#contacto">Contactar</a>
-          <a class="btn" href="#experiencia">Ver experiencia</a>
+          <a class="btn" href="#ia">Ver IA aplicada</a>
         </div>
         <div class="who">
           <img src="img/jahir-diaz.png" alt="Foto de Jahir Díaz">
-          <div><b>Jahir Díaz · Arquitecto SAP BTP</b><span>Más de 9 años en SAP. Certificado Solution Architect e Integration Developer.</span></div>
+          <div><b>Jahir Díaz · Arquitecto SAP BTP</b><span>SAP Certified Solution Architect, SAP BTP e Integration Developer.</span></div>
         </div>
       </div>
+
+      <figure class="orbit" id="orbit">
+        <canvas id="orbit-canvas" role="img" aria-label="Constelación animada de servicios SAP BTP en tres órbitas: plataforma y seguridad, integración y desarrollo, e IA y automatización."></canvas>
+        <div class="tip" id="tip" role="status" aria-live="polite"></div>
+        <ul class="sr-only" id="orbit-list"></ul>
+        <figcaption class="orbit-legend">
+          <button type="button" data-group="plat" aria-pressed="false">Plataforma y seguridad</button>
+          <button type="button" data-group="dev" aria-pressed="false">Integración y desarrollo</button>
+          <button type="button" data-group="ai" aria-pressed="false">IA y automatización</button>
+          <span class="status"><span><i class="dot"></i>En producción</span><span><i class="dot hollow"></i>Explorando</span></span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <section id="ia">
+    <div class="wrap">
+      <h2 class="h2">Mis primeros pasos en IA, sobre lo que ya domino.</h2>
+      <p class="intro">La IA rinde cuando está bien integrada al proceso. Este es el patrón que aplico con SAP Document AI: extracción, umbral de confianza por campo y revisión humana para las excepciones.</p>
 
       <figure class="demo" id="demo" aria-labelledby="demo-title">
         <div class="demo-head">
@@ -288,11 +331,11 @@ footer { padding-block: 72px 40px; display: flex; justify-content: space-between
               <div class="row"><b data-f="0">Ferretería Andina S.A.C.</b><span>FACTURA</span></div>
               <div class="row"><span>RUC <span data-f="1">20512345678</span></span><span data-f="2">F001-004817</span></div>
               <div class="row"><span>Emisión <span data-f="3">14/09/2026</span></span><span>OC <span data-f="4">4500018236</span></span></div>
-              <div class="lines">
+              <div class="items">
                 <div class="row"><span>Tubería PVC 4" x 3 m (120)</span><span>7,560.00</span></div>
                 <div class="row"><span>Codo PVC 4" 90° (240)</span><span>4,920.00</span></div>
               </div>
-              <div class="lines">
+              <div class="items">
                 <div class="row"><span>Subtotal</span><span data-f="5">12,480.00</span></div>
                 <div class="row"><span>IGV 18 %</span><span data-f="6">2,246.40</span></div>
                 <div class="row"><b>Total</b><b data-f="7">PEN 14,726.40</b></div>
@@ -316,50 +359,40 @@ footer { padding-block: 72px 40px; display: flex; justify-content: space-between
         <figcaption class="demo-note">Demo con datos de ejemplo. Mueve el umbral para ver qué se contabiliza solo y qué revisa una persona.</figcaption>
       </figure>
     </div>
-  </div>
+  </section>
 
   <section id="proceso">
     <div class="wrap">
-      <h2 class="h2">Cómo llevo un caso de IA a producción.</h2>
-      <p class="intro">El modelo es una parte. Lo que decide si funciona es cómo se conecta al proceso, quién revisa las excepciones y cómo se opera.</p>
+      <h2 class="h2">Cómo llevo un caso de IA a producción en BTP.</h2>
+      <p class="intro">El modelo es una parte. Lo que decide si funciona es la integración, quién revisa las excepciones y cómo se opera.</p>
       <ol class="steps">
         <li><h3>Caso de uso</h3><p>Un proceso con volumen y reglas claras: facturas, órdenes, solicitudes.</p></li>
         <li><h3>Esquema y umbrales</h3><p>Campos a extraer, esquema por tipo de documento y umbral de confianza por campo.</p></li>
-        <li><h3>Integración</h3><p>Entrada y salida conectadas con Cloud Integration, SAP CAP y eventos.</p></li>
+        <li><h3>Integración</h3><p>Entrada y salida con Cloud Integration, SAP CAP y eventos.</p></li>
         <li><h3>Revisión humana</h3><p>Lo que no supera el umbral llega a una persona con el documento a la vista.</p></li>
         <li><h3>Operación</h3><p>Monitoreo, seguridad con IAS y roles, y ajuste del esquema con casos reales.</p></li>
       </ol>
     </div>
   </section>
 
-  <section id="capacidades">
+  <section id="base">
     <div class="wrap">
-      <h2 class="h2">Lo que implemento en SAP BTP.</h2>
+      <h2 class="h2">Mi base en SAP BTP.</h2>
+      <p class="intro">Más de 9 años en integración, desarrollo y plataforma. Es lo que hace que un caso de IA llegue a producción.</p>
       <div class="bento">
         <article class="cell big">
-          <h3>IA documental con SAP Document AI</h3>
-          <p>Facturas que llegan por correo o se cargan en una app, extraídas, validadas por umbral y registradas en SAP S/4HANA.</p>
-<pre>{
-  <span class="k">"name"</span>: "grossAmount",
-  <span class="k">"value"</span>: "14726.40",
-  <span class="k">"confidence"</span>: 0.97
-},
-{
-  <span class="k">"name"</span>: "purchaseOrderNumber",
-  <span class="k">"value"</span>: "4500018236",
-  <span class="k">"confidence"</span>: <span class="w">0.71</span>   <span class="w">// a revisión</span>
+          <h3>Integration Suite</h3>
+          <p>iFlows custom y estándar en Cloud Integration, APIs gobernadas en API Management, Integration Advisor y migración de SAP PO a Cloud Integration.</p>
+<pre><span class="k">import</span> com.sap.gateway.ip.core.customdev.util.Message
+
+<span class="c">// Paso Script: deja los datos de ruteo de la factura en headers</span>
+<span class="k">def</span> Message setInvoiceRoutingHeaders(Message message) {
+    <span class="k">def</span> invoice = <span class="k">new</span> XmlSlurper().parse(message.getBody(java.io.Reader))
+    message.setHeader(<span class="k">'InvoiceNumber'</span>, invoice.Header.Number.text())
+    message.setHeader(<span class="k">'CompanyCode'</span>, invoice.Header.CompanyCode.text())
+    <span class="k">return</span> message
 }</pre>
-          <div class="chips"><span>Document AI</span><span>Cloud Integration</span><span>S/4HANA</span></div>
-        </article>
-        <article class="cell">
-          <h3>Asistentes con Joule</h3>
-          <p>Activación y configuración de SAP Joule sobre el landscape SAP, con identidad federada.</p>
-          <div class="chips"><span>Joule</span><span>IAS</span></div>
-        </article>
-        <article class="cell">
-          <h3>Orquestación</h3>
-          <p>Servicios SAP CAP que coordinan extracción, reglas y flujos en n8n.</p>
-          <div class="chips"><span>SAP CAP</span><span>n8n</span></div>
+          <div class="chips"><span>Cloud Integration</span><span>API Management</span><span>Integration Advisor</span><span>SAP PO</span></div>
         </article>
         <article class="cell">
           <h3>Eventos</h3>
@@ -367,14 +400,24 @@ footer { padding-block: 72px 40px; display: flex; justify-content: space-between
           <div class="chips"><span>Event Mesh</span><span>Kafka</span></div>
         </article>
         <article class="cell">
-          <h3>Integración</h3>
-          <p>Cloud Integration, API Management y migración de SAP PO a Cloud Integration.</p>
-          <div class="chips"><span>Integration Suite</span><span>APIM</span></div>
+          <h3>SAP CAP y SAPUI5</h3>
+          <p>Servicios OData sobre HANA Cloud y aplicaciones Fiori Elements y freestyle.</p>
+          <div class="chips"><span>SAP CAP</span><span>Fiori</span></div>
         </article>
         <article class="cell">
-          <h3>Plataforma segura</h3>
+          <h3>Plataforma e identidad</h3>
           <p>Subaccounts, role collections, Cloud Connector, IAS y SSO para Concur, SuccessFactors y Ariba.</p>
           <div class="chips"><span>BTP</span><span>IAS</span><span>SSO</span></div>
+        </article>
+        <article class="cell">
+          <h3>Datos</h3>
+          <p>SAP HANA Cloud y Google BigQuery para disponibilizar datos operativos.</p>
+          <div class="chips"><span>HANA Cloud</span><span>BigQuery</span></div>
+        </article>
+        <article class="cell ai">
+          <h3>IA en SAP</h3>
+          <p>Document AI y Joule en producción. Explorando Generative AI Hub y AI Core.</p>
+          <div class="chips"><span>Document AI</span><span>Joule</span><span class="exp">Generative AI Hub</span></div>
         </article>
       </div>
     </div>
@@ -504,8 +547,8 @@ footer { padding-block: 72px 40px; display: flex; justify-content: space-between
   <section id="contacto">
     <div class="wrap contact">
       <div>
-        <h2 class="h2">¿Tienes un proceso listo para IA?</h2>
-        <p>Facturas, órdenes o solicitudes con volumen. Escríbeme y vemos cómo llevarlo a producción en SAP BTP.</p>
+        <h2 class="h2">¿Hablamos de tu proyecto en SAP BTP?</h2>
+        <p>Integraciones, extensiones o un primer caso de IA sobre tu landscape. Escríbeme y te respondo con los siguientes pasos.</p>
       </div>
       <div class="contact-lines">
         <div class="line"><div><span class="k">Email</span><span class="v" id="em">jahirdiaz2595@gmail.com</span></div><button class="btn" type="button" data-copy="em">Copiar</button></div>
@@ -516,9 +559,258 @@ footer { padding-block: 72px 40px; display: flex; justify-content: space-between
   </section>
 </main>
 
-<footer class="wrap"><span>© 2026 Jahir Díaz</span><span>IA aplicada en SAP BTP</span></footer>
+<footer class="wrap"><span>© 2026 Jahir Díaz</span><span>SAP BTP · IA aplicada</span></footer>
 
 <script>
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- Constelación SAP BTP ---------- */
+(() => {
+  const GROUPS = { plat: 'Plataforma y seguridad', dev: 'Integración y desarrollo', ai: 'IA y automatización' };
+  // [nombre, nombre corto, grupo, órbita, en producción, nota]
+  const NODES = [
+    ['Cloud Foundry', 'CF', 'plat', 0, true, 'Runtime de aplicaciones y servicios'],
+    ['Cloud Identity (IAS)', 'IAS', 'plat', 0, true, 'Federación, SSO y roles'],
+    ['Cloud Connector', 'Connector', 'plat', 0, true, 'Conectividad segura on-premise'],
+    ['Destinations', 'Destinations', 'plat', 0, true, 'Conexiones a sistemas'],
+    ['Integration Suite', 'Integration Suite', 'dev', 1, true, 'iFlows, Integration Advisor y migración desde SAP PO'],
+    ['API Management', 'APIM', 'dev', 1, true, 'APIs gobernadas con políticas'],
+    ['Event Mesh', 'Event Mesh', 'dev', 1, true, 'Integración orientada a eventos'],
+    ['Advanced Event Mesh', 'AEM', 'dev', 1, true, 'Eventos a escala empresarial'],
+    ['SAP CAP', 'CAP', 'dev', 1, true, 'Servicios OData y lógica de negocio'],
+    ['SAPUI5 / Fiori', 'UI5', 'dev', 1, true, 'Aplicaciones Fiori Elements y freestyle'],
+    ['HANA Cloud', 'HANA', 'dev', 1, true, 'Persistencia para servicios CAP'],
+    ['Fiori Launchpad', 'Launchpad', 'dev', 1, true, 'Punto de entrada a las apps'],
+    ['Document AI', 'Document AI', 'ai', 2, true, 'Extracción de facturas y documentos'],
+    ['Joule', 'Joule', 'ai', 2, true, 'Asistente de IA de SAP'],
+    ['Generative AI Hub', 'GenAI Hub', 'ai', 2, false, 'Acceso a modelos generativos'],
+    ['AI Core', 'AI Core', 'ai', 2, false, 'Ciclo de vida de modelos de IA'],
+    ['Build Process Automation', 'BPA', 'ai', 2, false, 'Procesos, decisiones y automatización'],
+  ].map(([name, short, group, ring, prod, note], i) => ({ name, short, group, ring, prod, note, i }));
+
+  const RINGS = [{ r: .4, speed: .07 }, { r: .7, speed: -.04 }, { r: .98, speed: .025 }];
+  const perRing = [0, 1, 2].map(r => NODES.filter(n => n.ring === r));
+  NODES.forEach(n => { const list = perRing[n.ring]; n.phase = (list.indexOf(n) / list.length) * Math.PI * 2 + n.ring * .6; });
+
+  const fig = document.getElementById('orbit');
+  const canvas = document.getElementById('orbit-canvas');
+  const ctx = canvas.getContext('2d');
+  const tip = document.getElementById('tip');
+  document.getElementById('orbit-list').innerHTML = NODES.map(n => `<li>${n.name}: ${n.note} (${n.prod ? 'en producción' : 'explorando'})</li>`).join('');
+
+  let W = 0, H = 0, dpr = 1, colors = {}, angle = 0, speedK = 1, hovered = null, focusGroup = null, running = false, last = 0, packets = [], lastSpawn = 0, pulseT = 0;
+
+  function readColors() {
+    const cs = getComputedStyle(document.documentElement);
+    for (const k of ['bg', 'surface', 'ink', 'ink-2', 'line', 'accent', 'accent-soft']) colors[k] = cs.getPropertyValue('--' + k).trim();
+  }
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (!running) draw();
+  }
+
+  // Geometría de órbitas inclinadas (perspectiva simple)
+  function geom() {
+    const compact = W < 560;
+    const rx = W / 2 - (compact ? 40 : 70);
+    const ry = Math.min(rx * (compact ? .9 : .7), H / 2 - 26);
+    return { cx: W / 2, cy: H / 2, rx, ry, compact };
+  }
+  function pos(n, g) {
+    const a = n.phase + angle * RINGS[n.ring].speed * 10;
+    const r = RINGS[n.ring].r;
+    const depth = Math.sin(a); // -1 atrás, 1 adelante
+    return { x: g.cx + Math.cos(a) * g.rx * r, y: g.cy + depth * g.ry * r, depth };
+  }
+  const coreR = () => (W < 560 ? 34 : 44);
+
+  function spawnPacket() {
+    const a = NODES[Math.floor(Math.random() * NODES.length)];
+    const roll = Math.random();
+    let b = null;
+    if (roll > .55) { // entre órbitas: refleja integración entre servicios
+      const others = NODES.filter(n => n.ring !== a.ring);
+      b = others[Math.floor(Math.random() * others.length)];
+    }
+    packets.push({ a, b, t: 0, dur: 1600 + Math.random() * 1400, out: Math.random() > .5 });
+  }
+
+  function draw() {
+    const g = geom();
+    ctx.clearRect(0, 0, W, H);
+    // Órbitas
+    RINGS.forEach((ring, i) => {
+      ctx.beginPath();
+      ctx.ellipse(g.cx, g.cy, g.rx * ring.r, g.ry * ring.r, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = colors.line;
+      ctx.lineWidth = 1;
+      ctx.setLineDash(i === 2 ? [4, 5] : []);
+      ctx.stroke();
+    });
+    ctx.setLineDash([]);
+
+    const P = NODES.map(n => ({ n, ...pos(n, g) }));
+    const byIdx = new Map(P.map(p => [p.n, p]));
+    const dim = p => (focusGroup && p.n.group !== focusGroup) || (hovered && hovered !== p.n);
+
+    // Paquetes de datos
+    packets.forEach(pk => {
+      const pa = byIdx.get(pk.a);
+      const pb = pk.b ? byIdx.get(pk.b) : { x: g.cx, y: g.cy };
+      const [s, e] = pk.out ? [pb, pa] : [pa, pb];
+      const mx = (s.x + e.x) / 2 + (g.cx - (s.x + e.x) / 2) * .35;
+      const my = (s.y + e.y) / 2 + (g.cy - (s.y + e.y) / 2) * .35 - 18;
+      const t = pk.t;
+      // Trazo tenue del recorrido
+      ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.quadraticCurveTo(mx, my, e.x, e.y);
+      ctx.strokeStyle = colors.accent; ctx.globalAlpha = .12 * Math.sin(Math.PI * t); ctx.lineWidth = 1; ctx.stroke();
+      // Punto con estela
+      for (let k = 0; k < 6; k++) {
+        const tt = Math.max(0, t - k * .025);
+        const x = (1 - tt) ** 2 * s.x + 2 * (1 - tt) * tt * mx + tt ** 2 * e.x;
+        const y = (1 - tt) ** 2 * s.y + 2 * (1 - tt) * tt * my + tt ** 2 * e.y;
+        ctx.beginPath(); ctx.arc(x, y, 2.6 - k * .35, 0, Math.PI * 2);
+        ctx.fillStyle = colors.accent; ctx.globalAlpha = (1 - k / 6) * Math.sin(Math.PI * t) * .95; ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    });
+
+    const drawNode = p => {
+      const n = p.n, k = (p.depth + 1) / 2;
+      const scale = .75 + .25 * k;
+      const alpha = (dim(p) ? .22 : .5 + .5 * k);
+      const r = (n.ring === 2 ? 6.5 : 5.5) * scale;
+      ctx.globalAlpha = alpha;
+      if (n.ring === 2 && !reduceMotion) { // halo pulsante en la órbita de IA
+        const pr = r + 4 + 3 * Math.sin(pulseT / 500 + n.i);
+        ctx.beginPath(); ctx.arc(p.x, p.y, pr, 0, Math.PI * 2);
+        ctx.fillStyle = colors.accent; ctx.globalAlpha = alpha * .14; ctx.fill(); ctx.globalAlpha = alpha;
+      }
+      ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+      if (n.prod) { ctx.fillStyle = colors.accent; ctx.fill(); }
+      else { ctx.fillStyle = colors.bg; ctx.fill(); ctx.setLineDash([2.5, 2]); ctx.strokeStyle = colors.accent; ctx.lineWidth = 1.5; ctx.stroke(); ctx.setLineDash([]); }
+      if (hovered === n) { ctx.beginPath(); ctx.arc(p.x, p.y, r + 5, 0, Math.PI * 2); ctx.strokeStyle = colors.accent; ctx.lineWidth = 1.5; ctx.stroke(); }
+
+      // Etiqueta (posición resuelta en layoutLabels)
+      const L = p.label;
+      if (L && (L.show || hovered === n)) {
+        ctx.font = L.font;
+        ctx.fillStyle = colors.bg; ctx.globalAlpha = alpha * .82;
+        ctx.fillRect(L.lx - 4, L.ly - 12, L.tw + 8, 17);
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = n.ring === 2 ? colors.accent : colors.ink;
+        ctx.fillText(L.text, L.lx, L.ly);
+      }
+      ctx.globalAlpha = 1;
+      const lx = L ? L.lx : p.x, tw = L && (L.show || hovered === n) ? L.tw : 0, ly = L ? L.ly : p.y;
+      p.hit = { x: p.x, y: p.y, lx, tw, ly };
+    };
+
+    // Etiquetas: se ubican de adelante hacia atrás; si chocan, cambian de lado o se ocultan
+    const cr0 = coreR();
+    const placed = [{ x: g.cx - cr0, y: g.cy - cr0, w: cr0 * 2, h: cr0 * 2 }];
+    const hit = r => placed.some(q => r.x < q.x + q.w && r.x + r.w > q.x && r.y < q.y + q.h && r.y + r.h > q.y);
+    [...P].sort((a, b) => b.depth - a.depth).forEach(p => {
+      const n = p.n, k = (p.depth + 1) / 2, r = (n.ring === 2 ? 6.5 : 5.5) * (.75 + .25 * k);
+      const text = g.compact ? n.short : n.name;
+      const font = `${n.ring === 2 ? 600 : 500} ${Math.round((g.compact ? 11 : 12.5) * (.92 + .08 * k))}px Archivo, Helvetica, Arial, sans-serif`;
+      ctx.font = font;
+      const tw = ctx.measureText(text).width, ly = p.y + 4;
+      const sides = p.x >= g.cx ? [p.x + r + 8, p.x - r - 8 - tw] : [p.x - r - 8 - tw, p.x + r + 8];
+      let lx = sides[0], show = false;
+      for (const cand of sides) {
+        const rect = { x: cand - 5, y: ly - 13, w: tw + 10, h: 19 };
+        if (cand >= 2 && cand + tw <= W - 2 && !hit(rect)) { lx = cand; show = true; placed.push(rect); break; }
+      }
+      if (!show) lx = Math.min(Math.max(sides[0], 2), W - tw - 2);
+      p.label = { text, font, tw, lx, ly, show };
+    });
+
+    // Atrás, núcleo, adelante
+    P.filter(p => p.depth < 0).sort((a, b) => a.depth - b.depth).forEach(drawNode);
+
+    const cr = coreR();
+    if (!reduceMotion) {
+      const ph = (pulseT % 2600) / 2600;
+      ctx.beginPath(); ctx.arc(g.cx, g.cy, cr + ph * cr * 1.3, 0, Math.PI * 2);
+      ctx.strokeStyle = colors.accent; ctx.globalAlpha = (1 - ph) * .35; ctx.lineWidth = 1.5; ctx.stroke(); ctx.globalAlpha = 1;
+    }
+    ctx.beginPath(); ctx.arc(g.cx, g.cy, cr, 0, Math.PI * 2);
+    ctx.fillStyle = colors.surface; ctx.fill();
+    ctx.strokeStyle = colors.accent; ctx.lineWidth = 2; ctx.stroke();
+    ctx.fillStyle = colors.ink; ctx.textAlign = 'center';
+    ctx.font = `700 ${W < 560 ? 13 : 16}px Archivo, Helvetica, Arial, sans-serif`;
+    ctx.fillText('SAP BTP', g.cx, g.cy + 5);
+    ctx.textAlign = 'left';
+
+    P.filter(p => p.depth >= 0).sort((a, b) => a.depth - b.depth).forEach(drawNode);
+    draw.points = P;
+  }
+
+  function frame(ts) {
+    if (!running) return;
+    const dt = Math.min(64, ts - (last || ts)); last = ts;
+    speedK += ((hovered ? .12 : 1) - speedK) * .08;
+    angle += dt / 1000 * .1 * speedK;
+    pulseT += dt;
+    if (ts - lastSpawn > 520 && packets.length < 9) { spawnPacket(); lastSpawn = ts; }
+    packets.forEach(p => p.t += dt / p.dur);
+    packets = packets.filter(p => p.t < 1);
+    draw();
+    requestAnimationFrame(frame);
+  }
+  function start() { if (running || reduceMotion) return; running = true; last = 0; requestAnimationFrame(frame); }
+  function stop() { running = false; }
+
+  function showTip(n, p) {
+    tip.innerHTML = `<b>${n.name}</b><span>${n.note}</span><i class="${n.prod ? '' : 'exp'}">${GROUPS[n.group]} · ${n.prod ? 'En producción' : 'Explorando'}</i>`;
+    const x = Math.min(Math.max(p.x - 90, 0), W - 200);
+    const y = p.y > H * .55 ? p.y - 100 : p.y + 18;
+    tip.style.left = x + 'px'; tip.style.top = y + 'px';
+    tip.classList.add('on');
+  }
+  function hideTip() { tip.classList.remove('on'); }
+
+  const onPointer = e => {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left, y = e.clientY - rect.top;
+    let best = null, bestD = 22;
+    (draw.points || []).forEach(p => {
+      const h = p.hit; if (!h) return;
+      const d = Math.hypot(h.x - x, h.y - y);
+      const onLabel = x >= h.lx - 4 && x <= h.lx + h.tw + 4 && y >= h.ly - 12 && y <= h.ly + 5;
+      if (onLabel) { best = p; bestD = 0; }
+      else if (d < bestD) { best = p; bestD = d; }
+    });
+    hovered = best ? best.n : null;
+    canvas.style.cursor = best ? 'pointer' : 'default';
+    if (best) showTip(best.n, best); else hideTip();
+    if (!running) draw();
+  };
+  canvas.addEventListener('pointermove', onPointer);
+  canvas.addEventListener('pointerdown', onPointer);
+  canvas.addEventListener('pointerleave', () => { hovered = null; hideTip(); if (!running) draw(); });
+
+  document.querySelectorAll('.orbit-legend [data-group]').forEach(b => b.addEventListener('click', () => {
+    const g = b.dataset.group;
+    focusGroup = focusGroup === g ? null : g;
+    document.querySelectorAll('.orbit-legend [data-group]').forEach(x => x.setAttribute('aria-pressed', x.dataset.group === focusGroup));
+    if (!running) draw();
+  }));
+
+  readColors();
+  new ResizeObserver(resize).observe(canvas);
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readColors(); if (!running) draw(); });
+  new IntersectionObserver(([e]) => (e.isIntersecting && !document.hidden ? start() : stop())).observe(fig);
+  document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+  document.fonts?.ready.then(() => { if (!running) draw(); });
+  resize();
+})();
+
+/* ---------- Demo de extracción ---------- */
 (() => {
   // Datos de ejemplo de una extracción (no corresponden a ningún cliente)
   const FIELDS = [
@@ -538,7 +830,6 @@ footer { padding-block: 72px 40px; display: flex; justify-content: space-between
   const status = document.getElementById('status');
   const demo = document.getElementById('demo');
   const docF = [...document.querySelectorAll('.doc [data-f]')];
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   rows.innerHTML = FIELDS.map(([k, v, c]) =>
     `<tr><td>${k}</td><td class="v">${v}</td><td><span class="conf"><i style="--c:${c}"></i>${c.toFixed(2)}</span></td></tr>`).join('');
@@ -565,7 +856,7 @@ footer { padding-block: 72px 40px; display: flex; justify-content: space-between
   }
 
   function extract() {
-    if (reduce) { update(); return; }
+    if (reduceMotion) { update(); return; }
     status.textContent = 'Extrayendo';
     status.classList.add('busy');
     trs.forEach(r => r.classList.add('pending'));
@@ -578,7 +869,9 @@ footer { padding-block: 72px 40px; display: flex; justify-content: space-between
   th.addEventListener('input', update);
   document.getElementById('rerun').addEventListener('click', extract);
   update();
-  setTimeout(extract, 500);
+  // Extrae cuando la demo entra en pantalla por primera vez
+  const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { extract(); io.disconnect(); } }, { threshold: .4 });
+  io.observe(demo);
 
   document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', () => {
     const src = document.getElementById(b.dataset.copy);

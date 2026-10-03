@@ -68,7 +68,6 @@ p { margin: 0; }
 .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 .nav .wrap { display: flex; align-items: center; gap: 28px; height: 64px; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.brand img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; object-position: center 22%; }
 .brand b { font-weight: 700; font-stretch: 112%; }
 .nav ul { display: flex; gap: 24px; list-style: none; margin: 0 0 0 auto; padding: 0; font-size: .95rem; }
 .nav ul a { text-decoration: none; color: var(--ink-2); transition: color 160ms ease; }
@@ -92,7 +91,6 @@ p { margin: 0; }
 .lede { font-size: 1.15rem; color: var(--ink-2); max-width: 36ch; }
 .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
 .who { display: flex; align-items: center; gap: 14px; padding-top: 22px; border-top: 1px solid var(--line); }
-.who img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; object-position: center 22%; }
 .who b { display: block; font-stretch: 108%; }
 .who span { display: block; font-size: .9rem; color: var(--ink-2); line-height: 1.4; }
 
@@ -272,7 +270,7 @@ footer { padding-block: 72px 40px; display: flex; justify-content: space-between
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="#top"><img src="img/jahir-diaz.png" alt=""><b>Jahir Díaz</b></a>
+    <a class="brand" href="#top"><b>Jahir Díaz</b></a>
     <ul>
       <li><a href="#ia">IA aplicada</a></li>
       <li><a href="#base">Base BTP</a></li>
@@ -294,7 +292,6 @@ footer { padding-block: 72px 40px; display: flex; justify-content: space-between
           <a class="btn" href="#ia">Ver IA aplicada</a>
         </div>
         <div class="who">
-          <img src="img/jahir-diaz.png" alt="Foto de Jahir Díaz">
           <div><b>Jahir Díaz · Arquitecto SAP BTP</b><span>SAP Certified Solution Architect, SAP BTP e Integration Developer.</span></div>
         </div>
       </div>
